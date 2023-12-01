@@ -7,10 +7,84 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+enum UserType {
+  ADMIN
+  VOLUNTEER
+  DRIVER
+}
+
 model User {
-  id        Int      @id @default(autoincrement())
-  email     String   @unique
+  id        Int         @id @default(autoincrement())
+  email     String      @unique
   name      String?
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  createdAt DateTime    @default(now())
+  updatedAt DateTime    @updatedAt
+  type      UserType
+  Ambulance Ambulance[]
+}
+
+model Food {
+  id       Int    @id @default(autoincrement())
+  name     String
+  quantity Float
+  unit     String
+}
+
+model Volunteer {
+  id            Int             @id @default(autoincrement())
+  firstName     String
+  lastName      String
+  profession    String
+  VolunteerTask VolunteerTask[]
+}
+
+model Task {
+  id            Int             @id @default(autoincrement())
+  name          String
+  urgency       Int
+  longtitude    Float
+  latitude      Float
+  VolunteerTask VolunteerTask[]
+}
+
+model VolunteerTask {
+  id          Int       @id @default(autoincrement())
+  volunteerId Int
+  taskId      Int
+  volunteer   Volunteer @relation(fields: [volunteerId], references: [id])
+  task        Task      @relation(fields: [taskId], references: [id])
+}
+
+model Shelter {
+  id         Int   @id @default(autoincrement())
+  longtitude Float
+  latitude   Float
+  capacity   Int
+}
+
+model Ambulance {
+  id          Int     @id @default(autoincrement())
+  longtitude  Float?
+  latitude    Float?
+  isAvailable Boolean
+  driverId    Int
+  driver      User    @relation(fields: [driverId], references: [id])
+}
+
+enum DangerType {
+  BOMBING
+  TERRORIST_ATTACK
+  EARTHQUAKE
+  TSUNAMI
+  TORNADO
+  FAMINE
+  ROAD_ACCIDENT
+}
+
+model DangerousPlace {
+  id         Int        @id @default(autoincrement())
+  longtitude Float
+  latitude   Float
+  type       DangerType
+  severity   Int
 }
