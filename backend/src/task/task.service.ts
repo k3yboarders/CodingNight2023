@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { HttpException, Injectable } from '@nestjs/common';
 import { DbService } from 'src/db/db.service';
 import { TaskDto } from './dto/task.dto';
 
@@ -70,6 +70,38 @@ export class TaskService {
       data: {
         taskId: taskId,
         userId: volunteerId,
+      },
+    });
+  }
+
+  async completeTask(taskId: number, userId: number): Promise<void> {
+    const task = await this.prisma.volunteerTask.findFirst({
+      where: {
+        taskId: taskId,
+        userId: userId,
+      },
+    });
+    if (!task) {
+      throw new HttpException('Task not found', 404);
+    }
+    const user = await this.prisma.user.findFirst({
+      where: {
+        id: userId,
+      },
+    });
+
+    if (task.userId !== userId && user.type !== 'ADMIN') {
+      throw new HttpException(
+        'You are not authorized to complete this task',
+        403,
+      );
+    }
+    await this.prisma.task.update({
+      where: {
+        id: taskId,
+      },
+      data: {
+        isCompleted: true,
       },
     });
   }

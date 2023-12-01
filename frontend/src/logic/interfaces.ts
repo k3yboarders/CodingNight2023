@@ -8,6 +8,13 @@ export interface User {
   username: string;
   email: string;
   type: UserType;
-  createdAt: Date;
-  updatedAt: Date;
+}
+
+export interface Task {
+  id: number;
+  name: string;
+  urgency: number;
+  longitude: number;
+  latitude: number;
+  isCompleted: boolean;
 }
