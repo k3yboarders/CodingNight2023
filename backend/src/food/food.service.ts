@@ -15,6 +15,31 @@ export class FoodService {
     });
   }
 
+  async getAllFoods(page = 1, search?: string): Promise<object> {
+  
+    let whereParams = {};
+    if (search) {
+      whereParams = {
+        name: {
+          contains: search,
+        },
+      };
+    }
+
+    const data = await this.prisma.food.findMany({
+      skip: (page - 1) * 10,
+      take: 10,
+      where: whereParams,
+    });
+    const totalItems = await this.prisma.food.count();
+
+    return {
+      data,
+      totalItems,
+      totalPages: Math.ceil(totalItems / 10),
+    };
+  } 
+
   async addFood(foodId: number, quantityToAdd: number) {
     const currentQuantity = (
       await this.prisma.food.findUniqueOrThrow({

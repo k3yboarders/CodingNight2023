@@ -7,6 +7,8 @@ import {
   Patch,
   Delete,
   Param,
+  Get,
+  Query
 } from '@nestjs/common';
 import { FoodService } from './food.service';
 import { FoodDto } from './dto/food.dto';
@@ -14,6 +16,12 @@ import { FoodDto } from './dto/food.dto';
 @Controller('food')
 export class FoodController {
   constructor(private readonly foodService: FoodService) {}
+
+  @Get()
+  @HttpCode(HttpStatus.OK)
+  async getAllFoods(@Query('page') page = 1, @Query('search') search?: string): Promise<object> {
+    return await this.foodService.getAllFoods(page, search);
+  }
 
   @Post()
   @HttpCode(HttpStatus.CREATED)
