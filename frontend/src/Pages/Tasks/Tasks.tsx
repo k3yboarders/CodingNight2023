@@ -51,7 +51,7 @@ const Tasks = () => {
             <Box sx={{ display: "flex", flexDirection: "row", mb: 2 }}>
                 <TextField
                     fullWidth
-                    label="Search"
+                    label="Wyszukaj"
                     variant="outlined"
                     value={search}
                     onChange={handleSearch}

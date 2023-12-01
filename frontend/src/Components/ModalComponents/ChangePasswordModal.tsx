@@ -30,15 +30,15 @@ const ChangePasswordModal = (props: {
     const newPassword = newPasswordRef.current.value;
     const newPasswordAgain = newPasswordAgainRef.current.value;
     if (newPassword !== newPasswordAgain) {
-      enqueueSnackbar("Passwords do not match", { variant: "error" });
+      enqueueSnackbar("Hasła się nie zgadzają", { variant: "error" });
       return;
     }
     const status = await changePassword(oldPassword, newPassword);
     if (status === 200) {
-      enqueueSnackbar("Password has been changed", { variant: "success" });
+      enqueueSnackbar("Hasło zostało zmienione", { variant: "success" });
       props.handleClose();
     } else {
-      enqueueSnackbar("Password change failed", { variant: "error" });
+      enqueueSnackbar("Zmiana hasła nie powiodła się", { variant: "error" });
     }
   };
   return (
@@ -47,12 +47,12 @@ const ChangePasswordModal = (props: {
         <Box sx={style}>
           <Grid container sx={formStyle}>
             <Grid item>
-              <Typography variant="h4">Change password</Typography>
+              <Typography variant="h4">Zmień hasło</Typography>
             </Grid>
             <Grid item>
               <TextField
                 margin="normal"
-                label="Old password"
+                label="Stare hasło"
                 autoComplete="password"
                 autoFocus
                 inputRef={oldPasswordRef}
@@ -62,7 +62,7 @@ const ChangePasswordModal = (props: {
             <Grid item>
               <TextField
                 margin="normal"
-                label="New password"
+                label="Nowe hasło"
                 autoComplete="new-password"
                 autoFocus
                 inputRef={newPasswordRef}
@@ -72,7 +72,7 @@ const ChangePasswordModal = (props: {
             <Grid item>
               <TextField
                 margin="normal"
-                label="Repeat password"
+                label="Powtórz nowe hasło"
                 autoComplete="new-password"
                 autoFocus
                 inputRef={newPasswordAgainRef}
@@ -83,7 +83,7 @@ const ChangePasswordModal = (props: {
           <ActionsButtons
             cancel={props.handleClose}
             submit={handleSubmit}
-            submitText={"Change password"}
+            submitText={"Zmień hasło"}
             submitIcon={<EditIcon />}
           />
         </Box>

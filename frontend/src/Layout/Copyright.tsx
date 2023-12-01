@@ -15,8 +15,8 @@ const Copyright = () => {
       </Typography>
 
       <Typography variant="body2" color="text.secondary" align="center">
-        Made with{" "}
-        <FavoriteIcon sx={{ color: "red", verticalAlign: "middle" }} /> by{" "}
+        Stworzone z {" "}
+        <FavoriteIcon sx={{ color: "red", verticalAlign: "middle" }} /> przez{" "}
         <Link
           href="https://github.com/k3yboarders"
           target="_blank"

@@ -26,10 +26,10 @@ const EditUserModal = (props: {
     const handleEdit = async () => {
         const response = await updateUser(props.user);
         if (response.status === 200) {
-            enqueueSnackbar("User updated!", { variant: "success" });
+            enqueueSnackbar("Użytkownik zaktualizowany!", { variant: "success" });
             props.handleClose();
         } else {
-            enqueueSnackbar("Something went wrong!", { variant: "error" });
+            enqueueSnackbar("Coś poszło nie tak!", { variant: "error" });
         }
     };
 

@@ -24,13 +24,13 @@ const ForgotPassword = () => {
     } else {
       const status = await forgotPassword(emailRef.current.value);
       if (status === 201) {
-        enqueueSnackbar("Success, check your email", { variant: "success" });
+        enqueueSnackbar("Sukces, sprawdź swoją skrzynkę pocztową", { variant: "success" });
       } else if (status === 404) {
-        enqueueSnackbar("User with this email does not exist", {
+        enqueueSnackbar("Nie istnieje użytkownik z podanym adresem email", {
           variant: "error",
         });
       } else {
-        enqueueSnackbar("Error while sending email", { variant: "error" });
+        enqueueSnackbar("Wystąpił błąd podczas wysyłania miadomości email", { variant: "error" });
       }
     }
   };
