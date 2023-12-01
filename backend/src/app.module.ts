@@ -2,6 +2,7 @@ import { Module } from '@nestjs/common';
 import { AuthModule } from './auth/auth.module';
 import { DbModule } from './db/db.module';
 import { MailerModule } from '@nestjs-modules/mailer';
+import { FoodModule } from './food/food.module';
 
 @Module({
   imports: [
@@ -22,6 +23,7 @@ import { MailerModule } from '@nestjs-modules/mailer';
         },
       }),
     }),
+    FoodModule,
   ],
 })
 export class AppModule {}
