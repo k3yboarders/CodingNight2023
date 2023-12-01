@@ -66,6 +66,22 @@ model Ambulance {
   driver      User    @relation(fields: [driverId], references: [id])
 }
 
+model DangerousPlace {
+  id        Int        @id @default(autoincrement())
+  longitude Float
+  latitude  Float
+  type      DangerType
+  severity  Int
+}
+
+model Report {
+  id        Int        @id @default(autoincrement())
+  text      String
+  longitude Float
+  latitude  Float
+  type      DangerType   
+}
+
 enum DangerType {
   BOMBING
   TERRORIST_ATTACK
@@ -74,12 +90,4 @@ enum DangerType {
   TORNADO
   FAMINE
   ROAD_ACCIDENT
-}
-
-model DangerousPlace {
-  id        Int        @id @default(autoincrement())
-  longitude Float
-  latitude  Float
-  type      DangerType
-  severity  Int
 }

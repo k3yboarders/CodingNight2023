@@ -6,6 +6,7 @@ import { FoodModule } from './food/food.module';
 import { UsersModule } from './users/users.module';
 import { ShelterModule } from './shelter/shelter.module';
 import { TaskModule } from './task/task.module';
+import { ReportModule } from './report/report.module';
 
 @Module({
   imports: [
@@ -30,6 +31,7 @@ import { TaskModule } from './task/task.module';
     UsersModule,
     ShelterModule,
     TaskModule,
+    ReportModule,
   ],
 })
 export class AppModule {}

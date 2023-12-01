@@ -1,7 +1,6 @@
-import { IsNotEmpty, IsNumber, IsPositive, Min } from "class-validator";
+import { IsNotEmpty, IsNumber, IsPositive, Min } from 'class-validator';
 
 export class FoodDto {
-
   @IsNotEmpty()
   name: string;
 
