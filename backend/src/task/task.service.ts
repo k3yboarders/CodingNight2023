@@ -25,9 +25,30 @@ export class TaskService {
     });
   }
 
-  async getTasks(): Promise<TaskDto[]> {
-    return await this.prisma.task.findMany();
-  }
+  async getTasks(page = 1, search?: string): Promise<object> {
+    
+    let whereParams = {};
+    if (search) {
+      whereParams = {
+        name: {
+          contains: search,
+        },
+      };
+    }
+
+    const data = await this.prisma.task.findMany({
+        skip: (page - 1) * 10,
+        take: 10,
+        where: whereParams 
+      });
+    const totalItems = await this.prisma.task.count();
+
+    return {
+      data,
+      totalItems,
+      totalPages: Math.ceil(totalItems / 10), 
+    }
+ }
 
   async updateTask(taskId: number, task: TaskDto): Promise<void> {
     await this.prisma.task.update({
