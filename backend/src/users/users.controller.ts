@@ -1,4 +1,12 @@
-import { Body, Controller, Delete, Get, Put, Query, UseGuards } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Delete,
+  Get,
+  Put,
+  Query,
+  UseGuards,
+} from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
 import { AdminGuard } from 'src/auth/guards/adminGuard';
 import { UsersService } from './users.service';
@@ -10,7 +18,7 @@ export class UsersController {
   constructor(private readonly usersService: UsersService) {}
 
   @Get()
-  async getUsers(@Query('page') page: number) {
+  async getUsers(@Query('page') page = 1) {
     return await this.usersService.getUsers(page);
   }
 
