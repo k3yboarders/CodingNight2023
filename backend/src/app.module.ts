@@ -8,7 +8,6 @@ import { ShelterModule } from './shelter/shelter.module';
 import { TaskModule } from './task/task.module';
 import { ReportModule } from './report/report.module';
 import { AmbulanceModule } from './ambulance/ambulance.module';
-import { DangerousPlacesModule } from './dangerous-places/dangerous-places.module';
 import { DangerousPlaceModule } from './dangerous-place/dangerous-place.module';
 
 @Module({
@@ -36,7 +35,6 @@ import { DangerousPlaceModule } from './dangerous-place/dangerous-place.module';
     TaskModule,
     ReportModule,
     AmbulanceModule,
-    DangerousPlacesModule,
     DangerousPlaceModule,
   ],
 })
