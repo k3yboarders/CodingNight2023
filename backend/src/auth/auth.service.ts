@@ -97,6 +97,7 @@ export class AuthService {
       select: {
         id: true,
         username: true,
+        type: true,
       },
     });
   }
