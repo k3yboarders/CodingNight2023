@@ -44,7 +44,7 @@ export class DangerousAreaService {
 
     async getDangerousAreas(page: number): Promise<object> {
        const data = await this.prisma.dangerousArea.findMany({
-           skip: page * 10,
+           skip: (page - 1) * 10,
            take: 10
        });
        

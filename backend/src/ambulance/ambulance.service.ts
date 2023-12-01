@@ -14,7 +14,7 @@ export class AmbulanceService {
 
     async getAmbulances(page: number): Promise<AmbulanceQueryResult> {
         const data  = await this.prisma.ambulance.findMany({
-            skip: page * 10,
+            skip: (page - 1) * 10,
             take: 10,
         });
 
