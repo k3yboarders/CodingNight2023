@@ -9,6 +9,7 @@ import { TaskModule } from './task/task.module';
 import { ReportModule } from './report/report.module';
 import { AmbulanceModule } from './ambulance/ambulance.module';
 import { DangerousPlaceModule } from './dangerous-place/dangerous-place.module';
+import { DangerousAreaModule } from './dangerous-area/dangerous-area.module';
 
 @Module({
   imports: [
@@ -36,6 +37,7 @@ import { DangerousPlaceModule } from './dangerous-place/dangerous-place.module';
     ReportModule,
     AmbulanceModule,
     DangerousPlaceModule,
+    DangerousAreaModule,
   ],
 })
 export class AppModule {}
