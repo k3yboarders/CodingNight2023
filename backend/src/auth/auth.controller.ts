@@ -5,11 +5,9 @@ import {
   Post,
   Put,
   Query,
-  Res,
   UseGuards,
 } from '@nestjs/common';
 import { AuthService } from './auth.service';
-import { Response } from 'express';
 import { GetUser } from './decorator/getUser.decorator';
 import { JwtAuthDto } from './dto/jwt-auth.dto';
 import { ChangePasswordDto } from './dto/changePassword.dto';
@@ -26,12 +24,6 @@ export class AuthController {
     return await this.authService.isTaken(email);
   }
 
-  @Post('logout')
-  async logout(@Res() res: Response) {
-    res.clearCookie('jwt');
-    res.clearCookie('user_info');
-    res.send({ statusCode: true, message: 'Logout success' });
-  }
   @UseGuards(AuthGuard('jwt'))
   @Put('password/change')
   async changePassword(
