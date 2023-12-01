@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { List, ListItemButton, ListItemIcon, ListItemText } from "@mui/material";
-import DashboardIcon from "@mui/icons-material/Dashboard";
+import { Dashboard as DashboardIcon, People as PeopleIcon } from "@mui/icons-material/";
 
 const Sidebar = () => {
 
@@ -12,7 +12,12 @@ const Sidebar = () => {
         </ListItemIcon>
         <ListItemText primary="Dashboard" />
       </ListItemButton>
-
+      <ListItemButton component={Link} to={"/users"}>
+        <ListItemIcon>
+          <PeopleIcon />
+        </ListItemIcon>
+        <ListItemText primary="Users" />
+      </ListItemButton>
     </List>
   );
 };

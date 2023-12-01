@@ -17,7 +17,7 @@ const ActionsButtons = (props: {
         endIcon={<CancelIcon />}
         onClick={props.cancel}
       >
-        Cancel
+        Anuluj
       </Button>
       <Button
         variant="contained"

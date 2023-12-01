@@ -38,7 +38,7 @@ export const login = async (
     if (response.status === 200) {
       const data = await response.json();
       localStorage.setItem("token", data.token);
-      localStorage.setItem("userInfo", JSON.stringify(data.info));
+      localStorage.setItem("userInfo", JSON.stringify(data.userInfo));
     }
     return response.status;
   } catch (error) {
