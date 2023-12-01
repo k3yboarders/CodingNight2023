@@ -1,4 +1,4 @@
-import { createHashRouter, RouterProvider } from "react-router-dom";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import ResetPassword from "./Pages/Auth/ResetPassword/ResetPassword";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import Login from "./Pages/Auth/Login/Login";
@@ -7,7 +7,7 @@ import ForgotPassword from "./Pages/Auth/ForgotPassword/ForgotPassword";
 import { SnackbarProvider } from "notistack";
 import { ConfirmProvider } from "material-ui-confirm";
 
-const router = createHashRouter([
+const router = createBrowserRouter([
   {
     path: "/auth/login",
     element: <Login />,
