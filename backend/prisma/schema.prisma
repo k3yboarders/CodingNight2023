@@ -44,7 +44,7 @@ model Task {
   id            Int             @id @default(autoincrement())
   name          String
   urgency       Int
-  longtitude    Float
+  longitude     Float
   latitude      Float
   VolunteerTask VolunteerTask[]
 }
@@ -58,15 +58,15 @@ model VolunteerTask {
 }
 
 model Shelter {
-  id         Int   @id @default(autoincrement())
-  longtitude Float
-  latitude   Float
-  capacity   Int
+  id        Int   @id @default(autoincrement())
+  longitude Float
+  latitude  Float
+  capacity  Int
 }
 
 model Ambulance {
   id          Int     @id @default(autoincrement())
-  longtitude  Float?
+  longitude   Float?
   latitude    Float?
   isAvailable Boolean
   driverId    Int
@@ -84,9 +84,9 @@ enum DangerType {
 }
 
 model DangerousPlace {
-  id         Int        @id @default(autoincrement())
-  longtitude Float
-  latitude   Float
-  type       DangerType
-  severity   Int
+  id        Int        @id @default(autoincrement())
+  longitude Float
+  latitude  Float
+  type      DangerType
+  severity  Int
 }
