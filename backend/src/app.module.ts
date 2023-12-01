@@ -7,6 +7,7 @@ import { UsersModule } from './users/users.module';
 import { ShelterModule } from './shelter/shelter.module';
 import { TaskModule } from './task/task.module';
 import { ReportModule } from './report/report.module';
+import { AmbulanceModule } from './ambulance/ambulance.module';
 
 @Module({
   imports: [
@@ -32,6 +33,7 @@ import { ReportModule } from './report/report.module';
     ShelterModule,
     TaskModule,
     ReportModule,
+    AmbulanceModule,
   ],
 })
 export class AppModule {}
