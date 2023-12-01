@@ -9,6 +9,7 @@ import {
   Patch,
   Post,
   UseGuards,
+  Query,
 } from '@nestjs/common';
 import { TaskService } from './task.service';
 import { AuthGuard } from '@nestjs/passport';
@@ -30,7 +31,7 @@ export class TaskController {
   }
   @UseGuards(AuthGuard('jwt'), AdminGuard)
   @Get()
-  async getAllTasks(): Promise<object> {
+  async getAllTasks(@Query('search') search?: string): Promise<object> {
     return await this.taskService.getTasks();
   }
   @UseGuards(AuthGuard('jwt'), VolunteerGuard)
