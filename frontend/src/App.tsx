@@ -8,11 +8,16 @@ import Volunteers from "./Pages/Panel/Volunteers/Volunteers";
 //import Layout from "./Layout/Layout";
 import { SnackbarProvider } from "notistack";
 import { ConfirmProvider } from "material-ui-confirm";
+import Map from "./Pages/Panel/Map/Map";
 
 const router = createBrowserRouter([
   {
     path: "/panel/volunteers",
     element: <Volunteers/>
+  },
+  {
+    path: "/panel/map",
+    element: <Map />
   },
   {
     path: "/auth/login",
