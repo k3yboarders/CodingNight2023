@@ -6,8 +6,11 @@ import { ReportDto } from './dto/report.dto';
 export class ReportService {
   constructor(private readonly prisma: DbService) {}
 
-  async getAllReports() {
-    return await this.prisma.report.findMany();
+  async getAllReports(page = 1) {
+    return await this.prisma.report.findMany({
+      skip: (page - 1) * 10,
+      take: 10,
+    });
   }
 
   async getReportById(id: number) {
