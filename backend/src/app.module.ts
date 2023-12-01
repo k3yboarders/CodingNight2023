@@ -5,6 +5,7 @@ import { MailerModule } from '@nestjs-modules/mailer';
 import { FoodModule } from './food/food.module';
 import { UsersModule } from './users/users.module';
 import { ShelterModule } from './shelter/shelter.module';
+import { TaskModule } from './task/task.module';
 
 @Module({
   imports: [
@@ -28,6 +29,7 @@ import { ShelterModule } from './shelter/shelter.module';
     FoodModule,
     UsersModule,
     ShelterModule,
+    TaskModule,
   ],
 })
 export class AppModule {}
