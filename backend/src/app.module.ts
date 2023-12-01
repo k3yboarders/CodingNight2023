@@ -8,6 +8,8 @@ import { ShelterModule } from './shelter/shelter.module';
 import { TaskModule } from './task/task.module';
 import { ReportModule } from './report/report.module';
 import { AmbulanceModule } from './ambulance/ambulance.module';
+import { DangerousPlacesModule } from './dangerous-places/dangerous-places.module';
+import { DangerousPlaceModule } from './dangerous-place/dangerous-place.module';
 
 @Module({
   imports: [
@@ -34,6 +36,8 @@ import { AmbulanceModule } from './ambulance/ambulance.module';
     TaskModule,
     ReportModule,
     AmbulanceModule,
+    DangerousPlacesModule,
+    DangerousPlaceModule,
   ],
 })
 export class AppModule {}
