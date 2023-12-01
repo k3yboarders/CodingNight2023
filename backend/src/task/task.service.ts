@@ -62,4 +62,13 @@ export class TaskService {
             }
         });
     }
+
+    async assignTaskToVolunteer(taskId: number, volunteerId: number): Promise<void> {
+        await this.prisma.volunteerTask.create({
+            data: {
+                taskId: taskId,
+                volunteerId: volunteerId,
+            },
+        });
+    }
 }
