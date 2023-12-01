@@ -12,6 +12,11 @@ import { LoginDto } from './dto/login.dto';
 import { sha512 } from 'js-sha512';
 import { MailerService } from '@nestjs-modules/mailer';
 
+enum UserType {
+  ADMIN = 'ADMIN',
+  DRIVER = 'DRIVER',
+  VOLUNTEER = 'VOLUNTEER',
+}
 @Injectable()
 export class AuthService {
   constructor(
@@ -34,7 +39,6 @@ export class AuthService {
         email: dto.email,
         password: sha512(dto.password),
         username: dto.username,
-        type: dto.type
       },
     });
     await this.prisma.user.update({
@@ -49,6 +53,21 @@ export class AuthService {
   }
 
   async login(dto: LoginDto) {
+    const whereParams = {
+      email: dto.email,
+    };
+    if (dto.isAdmin) {
+      whereParams['type'] = 'ADMIN';
+    } else {
+      whereParams['OR'] = [
+        {
+          type: 'DRIVER',
+        },
+        {
+          type: 'VOLUNTEER',
+        },
+      ];
+    }
     const user = await this.prisma.user.findUniqueOrThrow({
       where: { email: dto.email },
     });
@@ -57,6 +76,7 @@ export class AuthService {
 
     const jwt = await this.generateAuthJwt({
       userId: user.id,
+      type: user.type as UserType,
     });
 
     return {

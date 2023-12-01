@@ -1,0 +1,2 @@
+-- AlterTable
+ALTER TABLE `User` MODIFY `type` ENUM('ADMIN', 'VOLUNTEER', 'DRIVER') NULL;

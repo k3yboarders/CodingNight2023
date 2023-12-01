@@ -18,6 +18,7 @@ export const registerUser = async (
       email: email,
       username: username,
       password: password,
+      isAdmin: true,
     };
     const response = await backendRequest("auth/register", "POST", false, body);
     return response.text();
