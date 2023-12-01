@@ -1,4 +1,9 @@
-import { IsEmail, IsNotEmpty, IsString } from 'class-validator';
+import { IsEmail, IsEnum, IsNotEmpty, IsString } from 'class-validator';
+enum UserType {
+  ADMIN = 'ADMIN',
+  VOLUNTEER = 'VOLUNTEER',
+  DRIVER = 'DRIVER'
+}
 
 export class RegisterDto {
   @IsNotEmpty()
@@ -11,4 +16,7 @@ export class RegisterDto {
   @IsString()
   @IsNotEmpty()
   password: string;
+
+  @IsEnum(UserType)
+  type: UserType
 }

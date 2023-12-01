@@ -34,6 +34,7 @@ export class AuthService {
         email: dto.email,
         password: sha512(dto.password),
         username: dto.username,
+        type: dto.type
       },
     });
     await this.prisma.user.update({
@@ -76,7 +77,6 @@ export class AuthService {
       select: {
         id: true,
         username: true,
-        includeSolveAtInExports: true,
       },
     });
   }
