@@ -6,8 +6,14 @@ import Register from "./Pages/Auth/Register/Register";
 import ForgotPassword from "./Pages/Auth/ForgotPassword/ForgotPassword";
 import { SnackbarProvider } from "notistack";
 import { ConfirmProvider } from "material-ui-confirm";
+import {Home} from "./Pages/ Home/Home.tsx";
+import {Dashboard} from "./Pages/Dashboard/Dashboard.tsx";
 
 const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <Home />,
+  },
   {
     path: "/auth/login",
     element: <Login />,
@@ -23,6 +29,10 @@ const router = createBrowserRouter([
   {
     path: "/auth/password/reset/:resetId",
     element: <ResetPassword />,
+  },
+  {
+    path: "/dashboard",
+    element: <Dashboard />,
   },
 ]);
 
