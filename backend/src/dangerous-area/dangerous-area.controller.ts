@@ -7,7 +7,7 @@ export class DangerousAreaController {
     constructor(private readonly dangerousAreaService: DangerousAreaService) {}
 
     @Get()
-    async getDangerousAreas(@Query() page = 1): Promise<object> {
+    async getDangerousAreas(@Query('page') page = 1): Promise<object> {
         return await this.dangerousAreaService.getDangerousAreas(page);
     }
 
