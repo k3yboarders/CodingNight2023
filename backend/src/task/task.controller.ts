@@ -31,8 +31,11 @@ export class TaskController {
   }
   @UseGuards(AuthGuard('jwt'), AdminGuard)
   @Get()
-  async getAllTasks(@Query('search') search?: string): Promise<object> {
-    return await this.taskService.getTasks();
+  async getAllTasks(
+    @Query('page') page: number,
+    @Query('search') search?: string,
+  ): Promise<object> {
+    return await this.taskService.getTasks(page, search);
   }
   @UseGuards(AuthGuard('jwt'), VolunteerGuard)
   @Get(':id')

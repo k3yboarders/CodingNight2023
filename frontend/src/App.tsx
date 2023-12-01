@@ -10,6 +10,7 @@ import { ConfirmProvider } from "material-ui-confirm";
 import Map from "./Pages/Panel/Map/Map";
 import Dashboard from "./Pages/Dashboard/Dashboard";
 import Users from "./Pages/Users/Users";
+import Tasks from "./Pages/Tasks/Tasks";
 
 const router = createBrowserRouter([
   {
@@ -19,6 +20,10 @@ const router = createBrowserRouter([
   {
     path: "/users",
     element: <Layout children={<Users />} />,
+  },
+  {
+    path: "/tasks",
+    element: <Layout children={<Tasks />} />,
   },
   {
     path: "/panel/map",

@@ -1,9 +1,8 @@
 import { Link } from "react-router-dom";
 import { List, ListItemButton, ListItemIcon, ListItemText } from "@mui/material";
-import { Dashboard as DashboardIcon, People as PeopleIcon } from "@mui/icons-material/";
+import { Dashboard as DashboardIcon, People as PeopleIcon, Task as TaskIcon } from "@mui/icons-material/";
 
 const Sidebar = () => {
-
   return (
     <List component="nav">
       <ListItemButton component={Link} to={"/"}>
@@ -16,7 +15,13 @@ const Sidebar = () => {
         <ListItemIcon>
           <PeopleIcon />
         </ListItemIcon>
-        <ListItemText primary="Users" />
+        <ListItemText primary="Użytkownicy" />
+      </ListItemButton>
+      <ListItemButton component={Link} to={"/tasks"}>
+        <ListItemIcon>
+          <TaskIcon />
+        </ListItemIcon>
+        <ListItemText primary="Zadania" />
       </ListItemButton>
     </List>
   );
