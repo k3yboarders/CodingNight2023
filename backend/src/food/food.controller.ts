@@ -1,4 +1,4 @@
-import { Controller, Post, Body, HttpStatus, HttpCode, Patch, Delete } from '@nestjs/common';
+import { Controller, Post, Body, HttpStatus, HttpCode, Patch, Delete, Param } from '@nestjs/common';
 import { FoodService } from './food.service';
 import { FoodDto } from './dto/food.dto';
 
@@ -19,9 +19,9 @@ export class FoodController {
         await this.foodService.addFood(foodId, quantityToAdd);
     }
 
-    @Delete('delete')
+    @Delete(':foodId')
     @HttpCode(HttpStatus.OK)
-    async deleteFood(@Body('foodId') foodId: number): Promise<void> {
+    async deleteFood(@Param('foodId') foodId: number): Promise<void> {
         await this.foodService.deleteFood(foodId);
     }
 
