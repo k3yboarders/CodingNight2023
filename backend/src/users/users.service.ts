@@ -14,13 +14,11 @@ export class UsersService {
           {
             email: {
               contains: search,
-              mode: 'insensitive',
             },
           },
           {
             username: {
               contains: search,
-              mode: 'insensitive',
             },
           },
         ],
