@@ -74,12 +74,21 @@ model DangerousPlace {
   severity  Int
 }
 
+model DangerousArea {
+  id        Int        @id @default(autoincrement())
+  longitude Float
+  latitude  Float
+  type      DangerType
+  severity  Int
+  radius    Float
+}
+
 model Report {
   id        Int        @id @default(autoincrement())
   text      String
   longitude Float
   latitude  Float
-  type      DangerType   
+  type      DangerType
 }
 
 enum DangerType {
