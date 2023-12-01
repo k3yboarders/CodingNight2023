@@ -50,7 +50,7 @@ const PaginationFooter = (props: {
           <NavigateBeforeIcon />
         </IconButton>
         <Typography>
-          Page {props.page} of {props.totalPages}
+          Strona {props.page} z {props.totalPages}
         </Typography>
         <IconButton
           onClick={nextPage}
@@ -60,7 +60,7 @@ const PaginationFooter = (props: {
         >
           <NavigateNextIcon />
         </IconButton>
-        <Typography>Total items: {props.totalItems}</Typography>
+        <Typography>Łącznie wierszy: {props.totalItems}</Typography>
       </TableCell>
     </TableRow>
   );

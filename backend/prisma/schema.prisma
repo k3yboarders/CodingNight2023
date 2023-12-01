@@ -37,6 +37,7 @@ model Task {
   id            Int             @id @default(autoincrement())
   name          String
   urgency       Int
+  isCompleted   Boolean         @default(false)
   longitude     Float
   latitude      Float
   VolunteerTask VolunteerTask[]
