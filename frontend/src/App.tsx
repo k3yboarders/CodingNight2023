@@ -38,7 +38,7 @@ const router = createBrowserRouter([
   },
   {
     path: "/map",
-    element: <Layout children={<Map />} containerless={true}/>
+    element: <Layout children={<Map />} containerless={true} noCopyright={true} />
   },
   {
     path: "/auth/login",

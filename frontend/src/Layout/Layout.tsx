@@ -19,7 +19,7 @@ import Copyright from "./Copyright";
 import Sidebar from "./Sidebar";
 import logo from "../assets/logo.svg";
 
-const Layout = (props: { children: ReactElement, containerless?: boolean }) => {
+const Layout = (props: { children: ReactElement, containerless?: boolean, noCopyright?: boolean }) => {
   const navigate = useNavigate();
   const [open, setOpen] = useState(true);
   const userLoggedIn = isUserLoggedIn();
@@ -108,7 +108,7 @@ const Layout = (props: { children: ReactElement, containerless?: boolean }) => {
           {props.children}
         </Container>
         }
-        <Copyright />
+        {!props.noCopyright && <Copyright />}
       </Box>
     </Box>
   );

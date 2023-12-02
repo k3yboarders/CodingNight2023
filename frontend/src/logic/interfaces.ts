@@ -57,3 +57,10 @@ export interface Report {
   createdAt: Date;
   updatedAt: Date;
 }
+
+export interface MapSettings {
+  showDangerousPlaces: boolean;
+  showAmbulances: boolean;
+  showReports: boolean;
+  showShelters: boolean;
+}

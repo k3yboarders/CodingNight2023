@@ -18,7 +18,7 @@ const ReportstTable = (props: {
     totalPages: number;
     totalItems: number;
     handlePageChange: (page: number) => void;
-    fetchData: (pageParam: number, searchParam?: string) => void;
+    fetchData: (pageParam: number, isCompletedParam?: boolean) => void;
 }) => {
     return (
         <TableContainer component={Paper}>
