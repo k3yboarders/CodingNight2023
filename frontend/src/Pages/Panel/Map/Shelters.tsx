@@ -25,7 +25,8 @@ const Shelters = () => {
 
     return shelters.length && shelters.map((shelter) => {
         return (
-        <Marker position={[shelter.longitude, shelter.latitude]} key={shelter.id} icon={L.icon({iconUrl: ShelterIcon, iconSize: [60, 60]})}></Marker>
+        <Marker position={[shelter.longitude, shelter.latitude]} key={shelter.id} icon={L.icon({iconUrl: ShelterIcon, iconSize: [60, 60]})}>
+        </Marker>
         )
     });
 
