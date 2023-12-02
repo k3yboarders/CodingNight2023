@@ -93,7 +93,7 @@ export const Report = () => {
         <StyledContainer>
             <Typography variant="body1" align="center" sx={{ my: 1, fontWeight: 'bold' }}>Witaj użytkowniku!</Typography>
             <Grid container sx={{ display: 'flex', alignItems: 'center', px: 2, mt: 3, mb: 5 }}>
-                <Grid item xs={6}>
+                <Grid item xs={6} sx={{display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center'}}>
                     <Typography variant="h6" sx={{ fontWeight: 'bold' }}>
                         {daysOfWeek[currentDate.getDay()]}
                     </Typography>
@@ -101,10 +101,11 @@ export const Report = () => {
                         {currentDate.toLocaleDateString()}
                     </Typography>
                 </Grid>
-                <Grid item xs={6}>
-                    <Typography variant="h5" align="right" sx={{ fontWeight: 'bold' }}>
-                        {ctime}
-                    </Typography>
+                <Grid item xs={6} sx={{display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center'}}>
+                        <Typography variant="subtitle2" align="right">Aktualna godzina:</Typography>
+                        <Typography variant="h6" align="right" sx={{ fontWeight: 'bold' }}>
+                            {ctime}
+                        </Typography>
                 </Grid>
             </Grid>
             <Box sx={{ backgroundColor: '#fff', width: '100vw', borderRadius: '2rem 0 0 0', flex: 1 }}>

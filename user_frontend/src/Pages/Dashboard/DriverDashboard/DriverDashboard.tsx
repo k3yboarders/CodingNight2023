@@ -46,7 +46,7 @@ export const DriverDashboard = () => {
         <StyledContainer>
             <Typography variant="body1" align="center" sx={{ my: 1, fontWeight: 'bold' }}>Witaj, {userInfo.username}</Typography>
             <Grid container sx={{ display: 'flex', alignItems: 'center', px: 2, mt: 3, mb: 5 }}>
-                <Grid item xs={6}>
+                <Grid item xs={6} sx={{display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center'}}>
                     <Typography variant="h6" sx={{ fontWeight: 'bold' }}>
                         {daysOfWeek[new Date().getDay()]}
                     </Typography>
@@ -54,8 +54,9 @@ export const DriverDashboard = () => {
                         {new Date().toLocaleDateString()}
                     </Typography>
                 </Grid>
-                <Grid item xs={6}>
-                    <Typography variant="h5" align="right" sx={{ fontWeight: 'bold' }}>
+                <Grid item xs={6} sx={{display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center'}}>
+                    <Typography variant="subtitle2" align="right">Aktualna godzina:</Typography>
+                    <Typography variant="h6" align="right" sx={{ fontWeight: 'bold' }}>
                         {ctime}
                     </Typography>
                 </Grid>
