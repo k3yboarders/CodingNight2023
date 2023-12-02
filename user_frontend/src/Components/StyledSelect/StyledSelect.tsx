@@ -28,7 +28,7 @@ const Select = React.forwardRef(function Select<
 
 export default function StyledSelect() {
     return (
-        <Select defaultValue={'ROAD_ACCIDENT'}>
+        <Select>
             <Option value={'BOMBING'}>Bombardowanie</Option>
             <Option value={'TERRORIST_ATTACK'}>Atak terrorystyczny</Option>
             <Option value={'EARTHQUAKE'}>Trzęsienie ziemi</Option>

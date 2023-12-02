@@ -47,7 +47,7 @@ export class ReportService {
       totalPages: Math.ceil((await this.prisma.report.count()) / 10),
     };
   }
-  
+
   async assignAmbulance(id: number, ambulanceId: number) {
     await this.prisma.ambulance.update({
       where: { id: ambulanceId },
@@ -111,6 +111,4 @@ export class ReportService {
       where: { id },
     });
   }
-
-
 }

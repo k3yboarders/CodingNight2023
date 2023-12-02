@@ -3,6 +3,8 @@ import {
   Controller,
   Delete,
   Get,
+  HttpCode,
+  HttpStatus,
   Param,
   Post,
   Query,
@@ -25,7 +27,7 @@ export class ReportController {
   async getAllReports(@Query('page') page = 1) {
     return await this.reportService.getAllReports(page);
   }
-
+  @HttpCode(HttpStatus.CREATED)
   @Post()
   async addReport(@Body() dto: ReportDto) {
     return await this.reportService.addReport(dto);
