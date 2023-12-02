@@ -38,6 +38,8 @@ export class UsersService {
         id: true,
         email: true,
         username: true,
+        firstName: true,
+        lastName: true,
         type: true,
         createdAt: true,
         updatedAt: true,
@@ -61,6 +63,8 @@ export class UsersService {
         type: true,
         createdAt: true,
         updatedAt: true,
+        firstName: true,
+        lastName: true,
       },
     });
   }
@@ -74,6 +78,8 @@ export class UsersService {
         email: dto.email,
         username: dto.username,
         type: dto.type,
+        firstName: dto.firstName,
+        lastName: dto.lastName,
       },
     });
   }
