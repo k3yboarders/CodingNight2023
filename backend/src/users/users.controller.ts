@@ -11,6 +11,7 @@ import { AuthGuard } from '@nestjs/passport';
 import { AdminGuard } from 'src/auth/guards/adminGuard';
 import { UsersService } from './users.service';
 import { UserDto } from './dto/user.dto';
+import { UserType } from '@prisma/client';
 
 @UseGuards(AuthGuard('jwt'), AdminGuard)
 @Controller('users')
@@ -18,8 +19,8 @@ export class UsersController {
   constructor(private readonly usersService: UsersService) {}
 
   @Get()
-  async getUsers(@Query('page') page = 1, @Query('search') search?: string) {
-    return await this.usersService.getUsers(page, search);
+  async getUsers(@Query('page') page = 1, @Query('search') search?: string, @Query('type') type?: UserType) {
+    return await this.usersService.getUsers(page, type, search);
   }
 
   @Get(':id')
