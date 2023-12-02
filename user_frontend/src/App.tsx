@@ -9,6 +9,7 @@ import { ConfirmProvider } from "material-ui-confirm";
 import {Home} from "./Pages/ Home/Home.tsx";
 import {Dashboard} from "./Pages/Dashboard/Dashboard.tsx";
 import {Report} from "./Pages/Report/Report.tsx";
+import Map from "./Pages/Map/Map";
 
 const router = createBrowserRouter([
   {
@@ -41,7 +42,7 @@ const router = createBrowserRouter([
   },
   {
     path: "/map",
-    element: <Report />,
+    element: <Map />,
   }
 ]);
 
