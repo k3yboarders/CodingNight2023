@@ -39,8 +39,11 @@ export class ReportController {
 
   @UseGuards(AuthGuard('jwt'), DriverGuard)
   @Get('user')
-  async getUserReports(@GetUser() user: JwtAuthDto) {
-    return await this.reportService.getUserReports(user.userId);
+  async getUserReports(
+    @GetUser() user: JwtAuthDto,
+    @Query('isCompleted') isCompleted: boolean,
+  ) {
+    return await this.reportService.getUserReports(user.userId, isCompleted);
   }
 
   @UseGuards(AuthGuard('jwt'), AdminGuard)

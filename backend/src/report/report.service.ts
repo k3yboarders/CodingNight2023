@@ -46,14 +46,15 @@ export class ReportService {
 
     return {
       data,
-      totalItems: await this.prisma.report.count({ where: { isCompleted }}),
+      totalItems: await this.prisma.report.count({ where: { isCompleted } }),
       totalPages: Math.ceil((await this.prisma.report.count()) / 10),
     };
   }
 
-  async getUserReports(userId: number) {
+  async getUserReports(userId: number, isCompleted = false) {
     return await this.prisma.report.findMany({
       where: {
+        isCompleted,
         ambulance: {
           driverId: userId,
         },
