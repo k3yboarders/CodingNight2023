@@ -17,6 +17,7 @@ import LoginPartial from "./LoginPartial";
 import { isUserLoggedIn } from "../logic/auth";
 import Copyright from "./Copyright";
 import Sidebar from "./Sidebar";
+import logo from "../assets/logo.svg";
 
 const Layout = (props: { children: ReactElement, containerless?: boolean }) => {
   const navigate = useNavigate();
@@ -73,11 +74,12 @@ const Layout = (props: { children: ReactElement, containerless?: boolean }) => {
           sx={{
             display: "flex",
             alignItems: "center",
-            justifyContent: "flex-end",
+            justifyContent: "space-between",
             px: [1],
           }}
         >
-          <Typography variant="h6" noWrap component="div">
+          <Typography variant="h6" noWrap component="div" sx={{display: 'flex', alignItems: 'center'}}>
+            <img src={logo} alt="Logo" style={{height: 50}} />
             Haid
           </Typography>
           <IconButton onClick={toggleDrawer}>

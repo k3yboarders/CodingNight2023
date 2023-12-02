@@ -30,6 +30,12 @@ export class FoodController {
     return await this.foodService.getAllFoods(page, search);
   }
 
+  @Get('all')
+  @HttpCode(HttpStatus.OK)
+  async getEntireFoodStock(): Promise<object> {
+    return await this.foodService.getEntireFoodStock();
+  }
+
   @Post()
   @HttpCode(HttpStatus.CREATED)
   async createFood(@Body() food: FoodDto): Promise<void> {

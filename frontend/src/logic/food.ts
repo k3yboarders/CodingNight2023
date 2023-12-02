@@ -7,6 +7,11 @@ export const getFood = async (page = 1, search?: string) => {
   return await response.json();
 };
 
+export const getAllFood = async () => {
+  const response = await backendRequest(`food/all`, "GET", true);
+  return await response.json();
+};
+
 export const createFood = async (
   name: string,
   quantity: number,

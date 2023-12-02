@@ -15,6 +15,10 @@ export class FoodService {
     });
   }
 
+  async getEntireFoodStock(): Promise<object> {
+    return await this.prisma.food.findMany();
+  }
+
   async getAllFoods(page = 1, search?: string): Promise<object> {
     let whereParams = {};
     if (search) {
