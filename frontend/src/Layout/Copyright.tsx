@@ -1,7 +1,6 @@
 import Typography from "@mui/material/Typography";
 import IconButton from "@mui/material/IconButton";
 import GitHubIcon from "@mui/icons-material/GitHub";
-import FavoriteIcon from "@mui/icons-material/Favorite";
 import { Link } from "@mui/material";
 import { Link as RouterLink } from "react-router-dom";
 
@@ -15,8 +14,7 @@ const Copyright = () => {
       </Typography>
 
       <Typography variant="body2" color="text.secondary" align="center">
-        Stworzone z {" "}
-        <FavoriteIcon sx={{ color: "red", verticalAlign: "middle" }} /> przez{" "}
+        Stworzone przez{" "}
         <Link
           href="https://github.com/k3yboarders"
           target="_blank"

@@ -43,7 +43,7 @@ function Login() {
         md={7}
         sx={{
           backgroundImage:
-            "url(https://source.unsplash.com/random/?city,night)",
+            "url(https://source.unsplash.com/random/?aid,humanity)",
           backgroundRepeat: "no-repeat",
           backgroundColor: (t) =>
             t.palette.mode === "light"
