@@ -1,13 +1,13 @@
 import * as React from 'react';
 import { Marker, Popup, useMap } from 'react-leaflet'
-import CreateTaskModal from '../../../Components/ModalComponents/Create/CreateTaskModal';
+import CreateTaskModal from '../../../Components/ModalComponents/Create/CreateMapItemModal';
 
 interface Point {
     x: number,
     y: number
 }
 
-const ClickManager = () => {
+const ClickManager = (props: {onChange: ()=>void}) => {
     const map = useMap();
     const [position, setPosition]= React.useState<Point|undefined>(undefined)
     const [show, setShow] = React.useState(false)
@@ -18,7 +18,7 @@ const ClickManager = () => {
     })
     return <>
        {position && <Marker position={[position.x, position.y]}></Marker>}
-      {show && position && <CreateTaskModal open={true} handleClose={()=>{setShow(false)}} lat={position.x} lng={position.y}/>}
+      {show && position && <CreateTaskModal open={true} handleClose={()=>{setShow(false); setPosition(undefined); props.onChange()}} lat={position.x} lng={position.y}/>}
         </>
 }
 

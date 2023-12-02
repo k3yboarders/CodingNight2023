@@ -14,7 +14,8 @@ export enum DangerType {
   TSUNAMI,
   TORNADO,
   FAMINE,
-  ROAD_ACCIDENT
+  ROAD_ACCIDENT,
+  UNKNOWN,
 }
 
 export interface DangerTypeParams {

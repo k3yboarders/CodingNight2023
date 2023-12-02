@@ -1,11 +1,11 @@
 import { Box, FormControl, Grid, InputLabel, MenuItem, Modal, Select, SelectChangeEvent, TextField, Typography } from "@mui/material";
 import { useEffect, useRef, useState } from "react";
-import { formStyle, style } from "../modalStyles";
+import { formStyle, style } from "../../modalStyles";
 import { enqueueSnackbar } from "notistack";
-import ActionsButtons from "../ActionsButtons";
+import ActionsButtons from "../../ActionsButtons";
 import AddCircleIcon from "@mui/icons-material/AddCircle";
-import { createTask } from "../../../logic/tasks";
-import { backendRequest } from "../../../logic/request";
+import { createTask } from "../../../../logic/tasks";
+import { backendRequest } from "../../../../logic/request";
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import dayjs from 'dayjs';
 
@@ -18,7 +18,7 @@ interface Volunteer {
 }
 
 
-const CreateTaskModal = (props: { open: boolean; handleClose: () => void; lat: number; lng:number }) => {
+const CreateTask = (props: { handleClose: () =>void, lat: number; lng:number }) => {
     const [volunteers, setVolunteers] = useState([] as Volunteer[]);
     const [volunteerId, setVolunteerId] = useState('');
     const [date, setDate] = useState(dayjs());
@@ -66,9 +66,7 @@ const CreateTaskModal = (props: { open: boolean; handleClose: () => void; lat: n
             enqueueSnackbar("Coś poszło nie tak!", { variant: "error" });
         }
     };
-    return (
-        <Modal open={props.open} onClose={props.handleClose}>
-            <Box sx={style}>
+    return <>
                 <Grid container sx={formStyle}>
                     <Grid item>
                         <Typography id="modal-modal-title" variant="h6" component="h2">
@@ -98,16 +96,15 @@ const CreateTaskModal = (props: { open: boolean; handleClose: () => void; lat: n
                     <Grid item>
                         <DatePicker defaultValue={date} onChange={(newDate)=>{newDate && setDate(newDate)}} slotProps={{ textField: { fullWidth: true } }}/>
                     </Grid>
+                    <ActionsButtons
+                        cancel={props.handleClose}
+                        submit={handleCreate}
+                        submitText={"Utwórz"}
+                        submitIcon={<AddCircleIcon />}
+                    />
                 </Grid>
-                <ActionsButtons
-                    cancel={props.handleClose}
-                    submit={handleCreate}
-                    submitText={"Utwórz"}
-                    submitIcon={<AddCircleIcon />}
-                />
-            </Box>
-        </Modal>
-    );
+                </>
+    ;
 };
 
-export default CreateTaskModal;
+export default CreateTask;
