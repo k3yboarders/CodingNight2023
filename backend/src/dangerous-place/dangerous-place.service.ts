@@ -42,7 +42,7 @@ export class DangerousPlaceService {
 
     async getDangerousPlaces(page: number): Promise<object> {
        const data = await this.prisma.dangerousPlace.findMany({
-           skip: page * 10,
+           skip: (page - 1) * 10,
            take: 10
        });
        
