@@ -22,6 +22,11 @@ export class DangerousAreaController {
     return await this.dangerousAreaService.getDangerousAreas(page);
   }
 
+  @Get('all')
+  async getAllDangerousAreas(): Promise<object> {
+    return await this.dangerousAreaService.getAllDangerousAreas();
+  }
+
   @UseGuards(AuthGuard('jwt'), AdminGuard)
   @Post()
   async createDangerousArea(

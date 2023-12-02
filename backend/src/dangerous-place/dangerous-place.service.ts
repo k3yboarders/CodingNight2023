@@ -53,5 +53,8 @@ export class DangerousPlaceService {
         totalPages: Math.ceil(count / 10),
        };
     }
-        
+    
+    async getAllDangerousPlaces(): Promise<object> {
+        return await this.prisma.dangerousPlace.findMany();
+    }
 }

@@ -55,5 +55,9 @@ export class DangerousAreaService {
         totalPages: Math.ceil(count / 10),
        };
     }
+
+    async getAllDangerousAreas(): Promise<object> {
+        return await this.prisma.dangerousArea.findMany();
+    }
         
 }

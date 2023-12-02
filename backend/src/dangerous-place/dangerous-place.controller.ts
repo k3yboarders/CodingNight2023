@@ -22,6 +22,11 @@ export class DangerousPlaceController {
     return await this.dangerousPlaceService.getDangerousPlaces(page);
   }
 
+  @Get('all')
+  async getAllDangerousPlaces(): Promise<object> {
+    return await this.dangerousPlaceService.getAllDangerousPlaces();
+  }
+
   @UseGuards(AuthGuard('jwt'), AdminGuard)
   @Post()
   async createDangerousPlace(

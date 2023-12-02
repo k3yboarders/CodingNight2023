@@ -80,4 +80,8 @@ export class AmbulanceService {
       },
     });
   }
+
+  async getAllAmbulances(): Promise<object> {
+    return await this.prisma.ambulance.findMany();
+  }
 }
