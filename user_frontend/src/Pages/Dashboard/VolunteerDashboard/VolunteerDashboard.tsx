@@ -29,7 +29,6 @@ export const VolunteerDashboard = () => {
     }
     setInterval(UpdateTime)
 
-
     const getTasks = useCallback(async () => {
         const response = await getUserTasks(isCompleted);
         setTasks(response);

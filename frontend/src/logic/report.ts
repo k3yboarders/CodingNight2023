@@ -1,7 +1,7 @@
 import { backendRequest } from "./request"
 
-export const getReports = async (page = 1) => {
-    const response = await backendRequest(`report?page=${page}`, "GET", true);
+export const getReports = async (page = 1, isCompleted: boolean) => {
+    const response = await backendRequest(`report?page=${page}&isCompleted=${isCompleted}`, "GET", true);
     return await response.json();
 };
 
