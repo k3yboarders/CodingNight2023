@@ -14,14 +14,21 @@ const StyledContainer = styled(Container)(`
   align-items: center;
 `);
 
-const currentDate = new Date();
-
 const daysOfWeek = ["Niedziela", "Poniedziałek", "Wtorek", "Środa", "Czwartek", "Piątek", "Sobota"];
 
 export const VolunteerDashboard = () => {
     const userInfo = getUserInfo();
     const [tasks, setTasks] = useState<Task[]>();
     const [isCompleted, setIsCompleted] = useState<boolean>(false);
+    let time  = new Date().toLocaleTimeString()
+
+    const [ctime,setTime] = useState(time)
+    const UpdateTime=()=>{
+      time =  new Date().toLocaleTimeString()
+      setTime(time)
+    }
+    setInterval(UpdateTime)
+
 
     const getTasks = useCallback(async () => {
         const response = await getUserTasks(isCompleted);
@@ -43,15 +50,15 @@ export const VolunteerDashboard = () => {
             <Grid container sx={{ display: 'flex', alignItems: 'center', px: 2, mt: 3, mb: 5 }}>
                 <Grid item xs={6}>
                     <Typography variant="h6" sx={{ fontWeight: 'bold' }}>
-                        {daysOfWeek[currentDate.getDay()]}
+                        {daysOfWeek[new Date().getDay()]}
                     </Typography>
                     <Typography variant="subtitle2">
-                        {currentDate.toLocaleDateString()}
+                        {new Date().toLocaleDateString()}
                     </Typography>
                 </Grid>
                 <Grid item xs={6}>
                     <Typography variant="h5" align="right" sx={{ fontWeight: 'bold' }}>
-                        19:00
+                        {ctime}
                     </Typography>
                 </Grid>
             </Grid>

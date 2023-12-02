@@ -29,7 +29,7 @@ export const TaskListItem = ({ task, getTasks }: Props) => {
                     {task.name}
                 </Typography>
                 <Typography variant="body2" sx={{ color: '#6f6f6f' }}>
-                    {task.date instanceof Date ? task.date.toLocaleDateString() : "Brak daty"}
+                    {task.date ? new Date(task.date).toLocaleDateString() : "Brak daty"}
                 </Typography>
             </Box>
             <Box sx={{ display: 'flex', alignItems: 'center', ml: 'auto' }}>
