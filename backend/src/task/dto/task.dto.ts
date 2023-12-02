@@ -1,9 +1,8 @@
 import {
+  IsDate,
   IsNotEmpty,
   IsNumber,
-  IsPort,
   IsPositive,
-  IsString,
 } from 'class-validator';
 
 export class TaskDto {
@@ -18,4 +17,7 @@ export class TaskDto {
   longitude: number;
   @IsNumber()
   latitude: number;
+
+  @IsDate()
+  date?: Date
 }

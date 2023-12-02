@@ -1,6 +1,6 @@
 import { IsNotEmpty, IsString, IsEmail, IsEnum } from 'class-validator';
 
-enum UserType {
+export enum UserType {
   ADMIN = 'ADMIN',
   VOLUNTEER = 'VOLUNTEER',
   DRIVER = 'DRIVER',

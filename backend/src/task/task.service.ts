@@ -6,15 +6,17 @@ import { TaskDto } from './dto/task.dto';
 export class TaskService {
   constructor(private readonly prisma: DbService) {}
 
-  async createTask(task: TaskDto): Promise<void> {
-    await this.prisma.task.create({
+  async createTask(task: TaskDto): Promise<number> {
+    const createdTask = await this.prisma.task.create({
       data: {
         name: task.name,
         urgency: task.urgency,
         longitude: task.longitude,
         latitude: task.latitude,
+        date: task.date,
       },
     });
+    return createdTask.id;
   }
 
   async deleteTask(taskId: number): Promise<void> {
@@ -59,6 +61,7 @@ export class TaskService {
         urgency: task.urgency,
         longitude: task.longitude,
         latitude: task.latitude,
+        date: task.date,
       },
     });
   }
@@ -80,6 +83,7 @@ export class TaskService {
             longitude: true,
             latitude: true,
             isCompleted: true,
+            date: true,
           },
         },
       },

@@ -16,18 +16,18 @@ import { AuthGuard } from '@nestjs/passport';
 import { AdminGuard } from '../auth/guards/adminGuard';
 import { TaskDto } from './dto/task.dto';
 import { AssignTaskDto } from './dto/assignTask.dto';
-import { VolunteerGuard } from 'src/auth/guards/volunteerGuard';
-import { CompleteTaskGuard } from 'src/auth/guards/completeTaskGuard';
-import { GetUser } from 'src/auth/decorator/getUser.decorator';
-import { JwtAuthDto } from 'src/auth/dto/jwt-auth.dto';
+import { VolunteerGuard } from '../auth/guards/volunteerGuard';
+import { CompleteTaskGuard } from '../auth/guards/completeTaskGuard';
+import { GetUser } from '../auth/decorator/getUser.decorator';
+import { JwtAuthDto } from '..//auth/dto/jwt-auth.dto';
 
 @Controller('task')
 export class TaskController {
   constructor(private readonly taskService: TaskService) {}
   @UseGuards(AuthGuard('jwt'), AdminGuard)
   @Post()
-  async createTask(@Body() task: TaskDto): Promise<void> {
-    await this.taskService.createTask(task);
+  async createTask(@Body() task: TaskDto): Promise<number> {
+    return this.taskService.createTask(task);
   }
   @UseGuards(AuthGuard('jwt'), AdminGuard)
   @Get()

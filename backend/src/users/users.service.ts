@@ -1,12 +1,13 @@
 import { Injectable } from '@nestjs/common';
 import { DbService } from '../db/db.service';
 import { UserDto } from './dto/user.dto';
+import { UserType } from '@prisma/client';
 
 @Injectable()
 export class UsersService {
   constructor(private readonly prisma: DbService) {}
 
-  async getUsers(page = 1, search?: string) {
+  async getUsers(page = 1, type?: UserType, search?: string) {
     const whereParams = {};
     if (search) {
       Object.assign(whereParams, {
@@ -24,6 +25,12 @@ export class UsersService {
         ],
       });
     }
+    if (type) {
+      Object.assign(whereParams, {
+        type
+      });
+    }
+
     const data = await this.prisma.user.findMany({
       skip: page === 1 ? 0 : (page - 1) * 10,
       take: 10,
