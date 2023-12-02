@@ -12,7 +12,7 @@ const LoginPartial = () => {
     <>
       {user ? (
         <>
-          <Typography>Hello {user.username}</Typography>
+          <Typography>Witaj {user.username}</Typography>
           <IconButton
             color="inherit"
             onClick={(event) => {
