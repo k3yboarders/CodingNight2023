@@ -4,6 +4,7 @@ import { Food } from '../../logic/interfaces';
 import { Bar, Line } from 'react-chartjs-2';
 import "chart.js/auto";
 import { getReportsByLastDays } from '../../logic/report';
+import { Box } from '@mui/material';
 
 const Dashboard = () => {
     
@@ -29,20 +30,23 @@ const Dashboard = () => {
             });
 
             const reportData = (await getReportsByLastDays(7)).data;
+            const reportMap: any = {};
 
-           /* for(report of reportData) {
-
-            } */
+            for(const report of reportData) {
+                const key = new Date(report.createdAt).toLocaleDateString("pl-PL")
+                if (!reportMap[key])
+                    reportMap[key] = 0;
+                reportMap[key]++;
+            } 
+            console.log(reportMap);
 
             setReportChartData({
-                labels: reportData.map((item: any) => {
-                    return item.createdAt;
-                }),
+                labels: Object.keys(reportMap),
                 datasets: [{
-                    label: 'Zgłoszenia',
-                    data: reportData.map((item: any) => {
-                        return item.count;
-                    }),
+                    label: 'Ilość zgłoszeń w ciągu ostatniego tygodnia',
+                    data: Object.values(reportMap),
+                    backgroundColor: 'rgba(255, 255, 0, 1)',
+                    borderColor: 'rgba(255, 255, 0, 1)',
                 }],
             });
         };
@@ -75,20 +79,22 @@ const Dashboard = () => {
         }, 
     };
     return <>
-        <div className="chart-container">
+        <Box>
             { Object.keys(foodChartData).length && 
             <Bar 
                 data={foodChartData}
                 options={foodChartOptions}
             />         
             }
+        </Box>
+        <Box>
             { Object.keys(reportChartData).length &&
             <Line 
                 data={reportChartData}
                 options={reportChartOptions}
             />
             }
-        </div>
+        </Box>
         </>
 };
 
