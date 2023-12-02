@@ -18,7 +18,7 @@ import { isUserLoggedIn } from "../logic/auth";
 import Copyright from "./Copyright";
 import Sidebar from "./Sidebar";
 
-const Layout = (props: { children: ReactElement }) => {
+const Layout = (props: { children: ReactElement, containerless?: boolean }) => {
   const navigate = useNavigate();
   const [open, setOpen] = useState(true);
   const userLoggedIn = isUserLoggedIn();
@@ -100,9 +100,12 @@ const Layout = (props: { children: ReactElement }) => {
         }}
       >
         <Toolbar />
+        {props.containerless ? 
+          props.children :
         <Container maxWidth="lg" sx={{ mt: 4, mb: 4 }}>
           {props.children}
         </Container>
+        }
         <Copyright />
       </Box>
     </Box>

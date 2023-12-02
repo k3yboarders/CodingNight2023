@@ -11,6 +11,8 @@ import Map from "./Pages/Panel/Map/Map";
 import Dashboard from "./Pages/Dashboard/Dashboard";
 import Users from "./Pages/Users/Users";
 import Tasks from "./Pages/Tasks/Tasks";
+import { LocalizationProvider } from '@mui/x-date-pickers';
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs'
 
 const router = createBrowserRouter([
   {
@@ -26,8 +28,8 @@ const router = createBrowserRouter([
     element: <Layout children={<Tasks />} />,
   },
   {
-    path: "/panel/map",
-    element: <Map />
+    path: "/map",
+    element: <Layout children={<Map />} containerless={true}/>
   },
   {
     path: "/auth/login",
@@ -58,7 +60,9 @@ const App = () => {
     <ThemeProvider theme={darkTheme}>
       <SnackbarProvider>
         <ConfirmProvider>
-          <RouterProvider router={router} />
+          <LocalizationProvider dateAdapter={AdapterDayjs}>
+            <RouterProvider router={router} />
+          </LocalizationProvider>
         </ConfirmProvider>
       </SnackbarProvider>
     </ThemeProvider>

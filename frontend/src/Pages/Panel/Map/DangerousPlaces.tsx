@@ -28,7 +28,7 @@ const DangerousPlaces = () => {
     return places.length && places.map((place) => {
         const params = getDangerTypeParams(place.type);
         return (
-        params.icon ? <Marker position={[place.longitude, place.latitude]} key={place.id} icon={params.icon}>
+        params.icon ? <Marker position={[place.latitude, place.longitude]} key={place.id} icon={params.icon}>
             <Popup>
                 {params.name} - poziom zagrożenia: {place.severity}
             </Popup>
