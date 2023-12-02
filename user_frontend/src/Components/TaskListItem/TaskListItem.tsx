@@ -6,15 +6,17 @@ import { enqueueSnackbar } from "notistack";
 
 interface Props {
     task: Task;
+    getTasks: () => void;
 }
 
 const label = { inputProps: { 'aria-label': 'Zadanie ukończone' } };
 
-export const TaskListItem = ({ task }: Props) => {
+export const TaskListItem = ({ task, getTasks }: Props) => {
     const handleComplete = async () => {
         const status = await completeTask(task.id);
         if (status === 200) {
             enqueueSnackbar("Status zadania został zmieniony pomyślnie!", { variant: "success" });
+            getTasks();
         } else {
             enqueueSnackbar("Coś poszło nie tak", { variant: "error" });
         }

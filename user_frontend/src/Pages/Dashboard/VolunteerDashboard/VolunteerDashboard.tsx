@@ -65,7 +65,7 @@ export const VolunteerDashboard = () => {
                     </Grid>
                 </Grid>
 
-                {tasks && tasks.length > 0 && <TaskList tasks={tasks} />}
+                {tasks && tasks.length > 0 && <TaskList tasks={tasks} getTasks={getTasks} />}
             </Box>
         </StyledContainer>
     );
