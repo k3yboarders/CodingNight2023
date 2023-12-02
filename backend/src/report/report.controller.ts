@@ -5,7 +5,6 @@ import {
   Get,
   Param,
   Post,
-  Put,
   Query,
   UseGuards,
 } from '@nestjs/common';
@@ -13,6 +12,9 @@ import { ReportService } from './report.service';
 import { AuthGuard } from '@nestjs/passport';
 import { AdminGuard } from 'src/auth/guards/adminGuard';
 import { ReportDto } from './dto/report.dto';
+import { CompleteReportGuard } from 'src/auth/guards/completeReportGuard';
+import { GetUser } from 'src/auth/decorator/getUser.decorator';
+import { JwtAuthDto } from 'src/auth/dto/jwt-auth.dto';
 
 @Controller('report')
 export class ReportController {
@@ -30,15 +32,20 @@ export class ReportController {
   }
 
   @UseGuards(AuthGuard('jwt'), AdminGuard)
-  @Get(':id')
-  async getReportById(@Param('id') id: number) {
-    return await this.reportService.getReportById(id);
+  @Get('assign')
+  async assignReport(
+    @Query('reportId') reportId: number,
+    @Query('ambulanceId') ambulanceId: number,
+  ) {
+    return await this.reportService.assignAmbulance(reportId, ambulanceId);
   }
-
-  @UseGuards(AuthGuard('jwt'), AdminGuard)
-  @Put(':id')
-  async updateReport(@Param('id') id: number, @Body() dto: ReportDto) {
-    return await this.reportService.updateReport(id, dto);
+  @UseGuards(AuthGuard('jwt'), CompleteReportGuard)
+  @Get('complete/:id')
+  async getCompleteReportById(
+    @Param('id') id: number,
+    @GetUser() user: JwtAuthDto,
+  ) {
+    return await this.reportService.completeReport(id, user.userId);
   }
 
   @UseGuards(AuthGuard('jwt'), AdminGuard)

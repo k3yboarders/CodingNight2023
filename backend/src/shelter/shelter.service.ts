@@ -6,18 +6,29 @@ import { ShelterDto } from './dto/shelter.dto';
 export class ShelterService {
   constructor(private readonly prisma: DbService) {}
 
-  async getShelters(page: number) {
-    const data = await this.prisma.shelter.findMany({
-      skip: (page - 1) * 10,
-      take: 10,
+  async getShelters() {
+    return await this.prisma.shelter.findMany({
       select: {
         id: true,
         longitude: true,
         latitude: true,
+        isPublic: true,
       },
     });
-    const totalItems = await this.prisma.shelter.count();
-    return { data, totalItems, totalPages: Math.ceil(totalItems / 10) };
+  }
+
+  async getSheltersPublic() {
+    return await this.prisma.shelter.findMany({
+      where: {
+        isPublic: true,
+      },
+      select: {
+        id: true,
+        longitude: true,
+        latitude: true,
+        isPublic: true,
+      },
+    });
   }
 
   async getShelter(id: number) {

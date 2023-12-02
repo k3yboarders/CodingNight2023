@@ -23,6 +23,12 @@ const Sidebar = () => {
         </ListItemIcon>
         <ListItemText primary="Zadania" />
       </ListItemButton>
+      <ListItemButton component={Link} to={"/reports"}>]
+        <ListItemIcon>
+          <TaskIcon />
+        </ListItemIcon>
+        <ListItemText primary="Zgłoszenia" />
+      </ListItemButton>
     </List>
   );
 };

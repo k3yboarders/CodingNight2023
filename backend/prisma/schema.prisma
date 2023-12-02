@@ -58,6 +58,7 @@ model Shelter {
   id        Int   @id @default(autoincrement())
   longitude Float
   latitude  Float
+  isPublic  Boolean @default(true)
   capacity  Int
 }
 

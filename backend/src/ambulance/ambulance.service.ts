@@ -64,6 +64,20 @@ export class AmbulanceService {
       where: {
         isAvailable: true,
       },
+      select: {
+        id: true,
+        longitude: true,
+        latitude: true,
+        driver: {
+          select: {
+            id: true,
+            username: true,
+            firstName: true,
+            lastName: true,
+            email: true,
+          },
+        },
+      },
     });
   }
 }
