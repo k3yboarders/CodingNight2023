@@ -60,7 +60,7 @@ const CreateTask = (props: { handleClose: () =>void, lat: number; lng:number }) 
         //const date = dateRef.current?.value;
         const status = await createTask(name, +urgency, +volunteerId, date.toDate(), props.lat, props.lng);
         if (status) {
-            enqueueSnackbar("Pomyślnie dodano jedzenie!", { variant: "success" });
+            enqueueSnackbar("Pomyślnie dodano zadanie!", { variant: "success" });
             props.handleClose();
         } else {
             enqueueSnackbar("Coś poszło nie tak!", { variant: "error" });

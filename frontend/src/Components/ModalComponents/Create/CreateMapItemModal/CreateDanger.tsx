@@ -1,26 +1,21 @@
 import {
-  Box,
   Checkbox,
   FormControl,
   FormControlLabel,
   Grid,
   InputLabel,
   MenuItem,
-  Modal,
   Select,
   SelectChangeEvent,
   TextField,
   Typography,
 } from "@mui/material";
 import { useEffect, useRef, useState } from "react";
-import { formStyle, style } from "../../modalStyles";
+import { formStyle } from "../../modalStyles";
 import { enqueueSnackbar } from "notistack";
 import ActionsButtons from "../../ActionsButtons";
 import AddCircleIcon from "@mui/icons-material/AddCircle";
-import { createTask } from "../../../../logic/tasks";
 import { backendRequest } from "../../../../logic/request";
-import { DatePicker } from "@mui/x-date-pickers/DatePicker";
-import dayjs from "dayjs";
 import getDangerTypeParams, { DangerType } from "../../../../Pages/Panel/Map/DangerType";
 import { createDanger } from "../../../../logic/dangers";
 
@@ -92,7 +87,7 @@ const CreateTask = (props: {
       dangerRadiusEnabled ? Number(radius) : undefined,
     );
     if (status) {
-      enqueueSnackbar("Pomyślnie dodano jedzenie!", { variant: "success" });
+      enqueueSnackbar("Pomyślnie dodano zagrożenie!", { variant: "success" });
       props.handleClose();
     } else {
       enqueueSnackbar("Coś poszło nie tak!", { variant: "error" });
