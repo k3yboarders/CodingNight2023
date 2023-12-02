@@ -51,6 +51,16 @@ export class ReportService {
     };
   }
 
+  async getUserReports(userId: number) {
+    return await this.prisma.report.findMany({
+      where: {
+        ambulance: {
+          driverId: userId,
+        },
+      },
+    });
+  }
+
   async assignAmbulance(id: number, ambulanceId: number) {
     await this.prisma.ambulance.update({
       where: { id: ambulanceId },

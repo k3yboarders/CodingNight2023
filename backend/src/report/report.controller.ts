@@ -17,6 +17,7 @@ import { ReportDto } from './dto/report.dto';
 import { CompleteReportGuard } from 'src/auth/guards/completeReportGuard';
 import { GetUser } from 'src/auth/decorator/getUser.decorator';
 import { JwtAuthDto } from 'src/auth/dto/jwt-auth.dto';
+import { DriverGuard } from 'src/auth/guards/driverGuard';
 
 @Controller('report')
 export class ReportController {
@@ -34,6 +35,12 @@ export class ReportController {
   @Post()
   async addReport(@Body() dto: ReportDto) {
     return await this.reportService.addReport(dto);
+  }
+
+  @UseGuards(AuthGuard('jwt'), DriverGuard)
+  @Get('user')
+  async getUserReports(@GetUser() user: JwtAuthDto) {
+    return await this.reportService.getUserReports(user.userId);
   }
 
   @UseGuards(AuthGuard('jwt'), AdminGuard)
