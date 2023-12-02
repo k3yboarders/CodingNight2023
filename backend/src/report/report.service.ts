@@ -6,12 +6,15 @@ import { ReportDto } from './dto/report.dto';
 export class ReportService {
   constructor(private readonly prisma: DbService) {}
 
-  async getAllReports(page = 1) {
+  async getAllReports(page = 1, isCompleted = false) {
     const data = await this.prisma.report.findMany({
       skip: (page - 1) * 10,
       take: 10,
       orderBy: {
         createdAt: 'desc',
+      },
+      where: {
+        isCompleted,
       },
       select: {
         id: true,
@@ -43,7 +46,7 @@ export class ReportService {
 
     return {
       data,
-      totalItems: await this.prisma.report.count(),
+      totalItems: await this.prisma.report.count({ where: { isCompleted }}),
       totalPages: Math.ceil((await this.prisma.report.count()) / 10),
     };
   }

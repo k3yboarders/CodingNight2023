@@ -24,8 +24,11 @@ export class ReportController {
 
   @UseGuards(AuthGuard('jwt'), AdminGuard)
   @Get()
-  async getAllReports(@Query('page') page = 1) {
-    return await this.reportService.getAllReports(page);
+  async getAllReports(
+    @Query('page') page = 1,
+    @Query('isCompleted') isCompleted: boolean,
+  ) {
+    return await this.reportService.getAllReports(page, isCompleted);
   }
   @HttpCode(HttpStatus.CREATED)
   @Post()
