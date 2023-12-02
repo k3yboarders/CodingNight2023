@@ -10,6 +10,7 @@ import { useAtom } from "jotai";
 import Shelters from "./Shelters";
 import Ambulances from "./Ambulances";
 import Reports from "./Reports";
+import Tasks from "./Tasks";
 
 const style = {
   width: "100vw",
@@ -35,6 +36,11 @@ const Map = () => {
           <>
             <DangerousPlaces />
             <DangerousAreas />
+          </>
+        )}
+        {refresh && mapSettings.showAmbulances && (
+          <>
+            <Tasks />
           </>
         )}
         {refresh && mapSettings.showAmbulances && (
@@ -76,6 +82,20 @@ const Map = () => {
         <Typography sx={{ mt: 2 }} variant="h6">
           Pokazuj na mapie:
         </Typography>
+        <FormControlLabel
+          control={
+            <Checkbox
+              checked={mapSettings.showTasks}
+              onChange={(event) =>
+                setMapSettings({
+                  ...mapSettings,
+                  showTasks: event.target.checked,
+                })
+              }
+            />
+          }
+          label="Pokazuj zadania"
+        />
         <FormControlLabel
           control={
             <Checkbox

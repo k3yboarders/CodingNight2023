@@ -60,6 +60,7 @@ export interface Report {
 }
 
 export interface MapSettings {
+  showTasks: boolean;
   showDangerousPlaces: boolean;
   showAmbulances: boolean;
   showReports: boolean;
