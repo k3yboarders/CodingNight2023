@@ -27,8 +27,13 @@ export class TaskService {
     });
   }
 
-  async getTasks(page = 1, search?: string): Promise<object> {
-    let whereParams = {};
+  async getTasks(
+    page = 1,
+    search?: string,
+    isCompleted = false,
+  ): Promise<object> {
+    let whereParams: any = {};
+    whereParams.isCompleted = Boolean(isCompleted);
     if (search) {
       whereParams = {
         name: {
