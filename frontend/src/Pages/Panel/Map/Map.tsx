@@ -72,7 +72,7 @@ const Map = () => {
           flexDirection: "column",
           backgroundColor: "#121212",
           width: 300,
-          height: 300,
+          height: 350,
           pl: 2,
           position: "absolute",
           left: 0,
