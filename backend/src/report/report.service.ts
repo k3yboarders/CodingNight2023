@@ -61,6 +61,20 @@ export class ReportService {
       },
     });
   }
+  async getReportsByLastDays(lastDays: number) {
+    const data = await this.prisma.report.findMany({
+      where: {
+        createdAt: {
+          gte: new Date(Date.now() - lastDays * 24 * 60 * 60 * 1000),
+        },
+      },
+    });
+    return {
+      data,
+      totalItems: await this.prisma.report.count(),
+      totalPages: Math.ceil((await this.prisma.report.count()) / 10),
+    };
+  }
 
   async assignAmbulance(id: number, ambulanceId: number) {
     await this.prisma.ambulance.update({

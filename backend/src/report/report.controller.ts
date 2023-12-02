@@ -24,6 +24,15 @@ export class ReportController {
   constructor(private readonly reportService: ReportService) {}
 
   @UseGuards(AuthGuard('jwt'), AdminGuard)
+  @Get('last')
+  async getByLastDays(
+    @Query('days') days,
+  ) {
+    return await this.reportService.getReportsByLastDays(days);
+  }
+
+
+  @UseGuards(AuthGuard('jwt'), AdminGuard)
   @Get()
   async getAllReports(
     @Query('page') page = 1,
