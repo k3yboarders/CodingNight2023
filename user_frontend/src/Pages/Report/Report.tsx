@@ -59,6 +59,15 @@ export const Report = () => {
         useRef();
     const [position, setPosition] = useState<any>();
     const [type, setType] = useState<string>("ROAD_ACCIDENT");
+
+    let time = new Date().toLocaleTimeString();
+
+    const [ctime,setTime] = useState(time);
+    const UpdateTime=()=>{
+        time =  new Date().toLocaleTimeString()
+        setTime(time)
+    }
+    setInterval(UpdateTime)
     const handleSubmit = async () => {
         if (!textRef.current?.value) {
             return;
@@ -94,7 +103,7 @@ export const Report = () => {
                 </Grid>
                 <Grid item xs={6}>
                     <Typography variant="h5" align="right" sx={{ fontWeight: 'bold' }}>
-                        19:00
+                        {ctime}
                     </Typography>
                 </Grid>
             </Grid>

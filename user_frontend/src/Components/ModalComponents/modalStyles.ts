@@ -1,10 +1,7 @@
 export const style = {
     position: "absolute" as const,
     top: "50%",
-    left: {
-        xs: "60%",
-        lg: "75%",
-    },
+    left: "50%",
     transform: "translate(-50%, -50%)",
     overflow: "auto",
     height: {
@@ -12,7 +9,7 @@ export const style = {
         lg: "400px",
     },
     width: {
-        xs: "100vw",
+        xs: "80vw",
         lg: "50vw",
     }
 };

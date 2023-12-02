@@ -1,8 +1,10 @@
-import { Box, Checkbox, Typography } from "@mui/material";
+import {Box, Checkbox, IconButton, Typography} from "@mui/material";
 import LocationOnOutlinedIcon from '@mui/icons-material/LocationOnOutlined';
 import { Report } from "../../logic/interfaces.ts";
 import { enqueueSnackbar } from "notistack";
 import {completeReport} from "../../logic/report.ts";
+import {useState} from "react";
+import MapModal from "../ModalComponents/MapModal.tsx";
 
 interface Props {
     report: Report;
@@ -12,6 +14,7 @@ interface Props {
 const label = { inputProps: { 'aria-label': 'Zadanie ukończone' } };
 
 export const ReportListItem = ({ report, getReports }: Props) => {
+    const [openMapModal, setOpenMapModal] = useState<boolean>(false);
     const handleComplete = async () => {
         const status = await completeReport(report.id);
         if (status === 200) {
@@ -33,8 +36,11 @@ export const ReportListItem = ({ report, getReports }: Props) => {
                 </Typography>
             </Box>
             <Box sx={{ display: 'flex', alignItems: 'center', ml: 'auto' }}>
-                <LocationOnOutlinedIcon sx={{ color: '#6f6f6f' }} />
+                <IconButton onClick={() => setOpenMapModal(true)}>
+                    <LocationOnOutlinedIcon sx={{ color: '#6f6f6f' }} />
+                </IconButton>
             </Box>
+            {openMapModal && <MapModal open={openMapModal} handleClose={() => setOpenMapModal(false)} lang={report.longitude} lat={report.latitude} />}
         </Box>
     );
 };
