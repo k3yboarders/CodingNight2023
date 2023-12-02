@@ -18,14 +18,14 @@ const DangerousAreas = () => {
                 return res.json()
             throw new Error("Request failed")
         })
-        .then(json => {setAreas(json.data); console.log(json.data)})
+        .then(json => {setAreas(json.data)})
     }, []);
 
 
     return areas.map((area) => {
         const params = getDangerTypeParams(area.type);
         return (
-           <Circle center={[area.longitude, area.latitude]} pathOptions={{color: params.color}} radius={area.radius} key={area.id}>
+           <Circle center={[area.latitude, area.longitude]} pathOptions={{color: params.color}} radius={area.radius} key={area.id}>
             <Popup>
                 {params.name} - poziom zagrożenia: {area.severity}
             </Popup>

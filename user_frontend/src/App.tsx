@@ -8,6 +8,7 @@ import { SnackbarProvider } from "notistack";
 import { ConfirmProvider } from "material-ui-confirm";
 import {Home} from "./Pages/ Home/Home.tsx";
 import {Dashboard} from "./Pages/Dashboard/Dashboard.tsx";
+import {Report} from "./Pages/Report/Report.tsx";
 
 const router = createBrowserRouter([
   {
@@ -34,6 +35,10 @@ const router = createBrowserRouter([
     path: "/dashboard",
     element: <Dashboard />,
   },
+  {
+    path: "/report",
+    element: <Report />,
+  }
 ]);
 
 const darkTheme = createTheme({

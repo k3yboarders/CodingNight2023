@@ -29,7 +29,7 @@ export const Home = () => {
                 backgroundPosition: "center",
                 color: '#fff',
                 cursor: 'pointer'
-            }} onClick={() => navigate('/dashboard')}>
+            }} onClick={() => navigate('/report')}>
                 <Typography variant="h4" align="center" sx={{fontWeight: 'bolder', textShadow: '0 0 10px black'}}>
                     Anonimowe zgłoszenia
                 </Typography>

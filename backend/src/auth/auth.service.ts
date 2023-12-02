@@ -39,6 +39,8 @@ export class AuthService {
         email: dto.email,
         password: sha512(dto.password),
         username: dto.username,
+        firstName: dto.firstName,
+        lastName: dto.lastName,
       },
     });
     await this.prisma.user.update({
@@ -98,6 +100,8 @@ export class AuthService {
         id: true,
         username: true,
         type: true,
+        firstName: true,
+        lastName: true,
       },
     });
   }

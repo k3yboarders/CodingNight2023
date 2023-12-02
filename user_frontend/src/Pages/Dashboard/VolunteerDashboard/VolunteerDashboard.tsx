@@ -58,10 +58,10 @@ export const VolunteerDashboard = () => {
             <Box sx={{ backgroundColor: '#fff', width: '100vw', borderRadius: '2rem 0 0 0', flex: 1 }}>
                 <Grid container sx={{ px: 3, mt: '2rem' }}>
                     <Grid item xs={6}>
-                        <Typography variant="body1" align="center" sx={{ fontWeight: 'bold', backgroundColor: isCompleted ? '#4045c9' : '#f2f2f2', color: isCompleted ? '#fffff' : '#6f6f6f', p: 2, borderRadius: 5, mr: 2, cursor: "pointer" }} onClick={handleChangeTaskComplete}>Zadania do wykonania</Typography>
+                        <Typography variant="body1" align="center" sx={{ fontWeight: 'bold', backgroundColor: isCompleted ? '#f2f2f2' : '#4045c9', color: isCompleted ? '#6f6f6f' : '#fffff', p: 2, borderRadius: 5, mr: 2, cursor: "pointer" }} onClick={handleChangeTaskComplete}>Zadania do wykonania</Typography>
                     </Grid>
                     <Grid item xs={6}>
-                        <Typography variant="body1" align="center" sx={{ fontWeight: 'bold', backgroundColor: !isCompleted ? '#4045c9' : '#f2f2f2', color: !isCompleted ? '#fffff' : '#6f6f6f', p: 2, borderRadius: 5, ml: 2, cursor: "pointer" }} onClick={handleChangeTaskComplete} >Zadania wykonane</Typography>
+                        <Typography variant="body1" align="center" sx={{ fontWeight: 'bold', backgroundColor: isCompleted ? '#4045c9' : '#f2f2f2', color: isCompleted ? '#fffff' : '#6f6f6f', p: 2, borderRadius: 5, ml: 2, cursor: "pointer" }} onClick={handleChangeTaskComplete} >Zadania wykonane</Typography>
                     </Grid>
                 </Grid>
 

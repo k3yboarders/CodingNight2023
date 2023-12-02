@@ -12,18 +12,24 @@ export const registerUser = async (
   email: FormDataEntryValue | null,
   username: FormDataEntryValue | null,
   password: FormDataEntryValue | null,
+  firstName: FormDataEntryValue | null,
+  lastName: FormDataEntryValue | null,
 ) => {
   try {
     const body = {
-      email: email,
-      username: username,
-      password: password,
+      email,
+      username,
+      password,
+      firstName,
+      lastName,
       isAdmin: true,
     };
     const response = await backendRequest("auth/register", "POST", false, body);
-    return response.text();
+    
+    return response.ok;
   } catch (error) {
     console.log(error);
+    return false;
   }
 };
 export const login = async (
