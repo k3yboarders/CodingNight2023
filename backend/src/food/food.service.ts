@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { FoodDto } from './dto/food.dto';
-import { DbService } from 'src/db/db.service';
+import { DbService } from '../db/db.service';
 
 @Injectable()
 export class FoodService {
@@ -16,7 +16,6 @@ export class FoodService {
   }
 
   async getAllFoods(page = 1, search?: string): Promise<object> {
-  
     let whereParams = {};
     if (search) {
       whereParams = {
@@ -38,26 +37,17 @@ export class FoodService {
       totalItems,
       totalPages: Math.ceil(totalItems / 10),
     };
-  } 
+  }
 
-  async addFood(foodId: number, quantityToAdd: number) {
-    const currentQuantity = (
-      await this.prisma.food.findUniqueOrThrow({
-        where: {
-          id: foodId,
-        },
-        select: {
-          quantity: true,
-        },
-      })
-    ).quantity;
-
+  async updateFood(foodId: number, dto: FoodDto): Promise<void> {
     await this.prisma.food.update({
       where: {
         id: foodId,
       },
       data: {
-        quantity: currentQuantity + quantityToAdd,
+        name: dto.name,
+        quantity: dto.quantity,
+        unit: dto.unit,
       },
     });
   }
@@ -66,28 +56,6 @@ export class FoodService {
     await this.prisma.food.delete({
       where: {
         id: foodId,
-      },
-    });
-  }
-
-  async removeFoodSupply(foodId: number, quantityToRemove: number) {
-    const currentQuantity = (
-      await this.prisma.food.findUniqueOrThrow({
-        where: {
-          id: foodId,
-        },
-        select: {
-          quantity: true,
-        },
-      })
-    ).quantity;
-
-    await this.prisma.food.update({
-      where: {
-        id: foodId,
-      },
-      data: {
-        quantity: currentQuantity - quantityToRemove,
       },
     });
   }

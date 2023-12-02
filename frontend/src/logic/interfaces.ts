@@ -18,3 +18,10 @@ export interface Task {
   latitude: number;
   isCompleted: boolean;
 }
+
+export interface Food {
+  id: number;
+  name: string;
+  quantity: number;
+  unit: string; 
+}

@@ -4,22 +4,29 @@ import {
   Body,
   HttpStatus,
   HttpCode,
-  Patch,
   Delete,
   Param,
+  Put,
   Get,
-  Query
+  Query,
+  UseGuards,
 } from '@nestjs/common';
 import { FoodService } from './food.service';
 import { FoodDto } from './dto/food.dto';
+import { AuthGuard } from '@nestjs/passport';
+import { AdminGuard } from 'src/auth/guards/adminGuard';
 
+@UseGuards(AuthGuard('jwt'), AdminGuard)
 @Controller('food')
 export class FoodController {
   constructor(private readonly foodService: FoodService) {}
 
   @Get()
   @HttpCode(HttpStatus.OK)
-  async getAllFoods(@Query('page') page = 1, @Query('search') search?: string): Promise<object> {
+  async getAllFoods(
+    @Query('page') page = 1,
+    @Query('search') search?: string,
+  ): Promise<object> {
     return await this.foodService.getAllFoods(page, search);
   }
 
@@ -29,27 +36,18 @@ export class FoodController {
     await this.foodService.createFood(food);
   }
 
-  @Patch('add')
+  @Put(':foodId')
   @HttpCode(HttpStatus.OK)
-  async addFood(
-    @Body('foodId') foodId: number,
-    @Body('quantity') quantityToAdd,
+  async updateFood(
+    @Param('foodId') foodId: number,
+    @Body() food: FoodDto,
   ): Promise<void> {
-    await this.foodService.addFood(foodId, quantityToAdd);
+    await this.foodService.updateFood(foodId, food);
   }
 
   @Delete(':foodId')
   @HttpCode(HttpStatus.OK)
   async deleteFood(@Param('foodId') foodId: number): Promise<void> {
     await this.foodService.deleteFood(foodId);
-  }
-
-  @Patch('remove')
-  @HttpCode(HttpStatus.OK)
-  async removeFoodSupply(
-    @Body('foodId') foodId: number,
-    @Body('quantity') quantityToRemove: number,
-  ): Promise<void> {
-    await this.foodService.removeFoodSupply(foodId, quantityToRemove);
   }
 }
