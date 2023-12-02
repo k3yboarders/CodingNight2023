@@ -38,6 +38,7 @@ export class ReportController {
     return await this.reportService.getAllReports(page, isCompleted);
   }
 
+  @Get('all')
   @UseGuards(AuthGuard('jwt'), AdminGuard)
   async getReportsWithoutPaginating() {
     return await this.reportService.getReportsWithoutPaginating();
