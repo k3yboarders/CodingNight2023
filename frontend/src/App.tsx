@@ -59,7 +59,7 @@ const router = createBrowserRouter([
   },
   {
     path: "/food",
-    element: <Layout children={<Food />} containerless={true}/>
+    element: <Layout children={<Food />} />
   }
 ]);
 

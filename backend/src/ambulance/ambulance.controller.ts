@@ -26,6 +26,11 @@ export class AmbulanceController {
     return this.ambulanceService.getAvailableAmbulances();
   }
 
+  @Get('all')
+  async getAllAmbulances() {
+    return this.ambulanceService.getAllAmbulances();
+  }
+
   @Post()
   @HttpCode(HttpStatus.CREATED)
   async createAmbulances(@Body() ambulanceData: AmbulanceDto): Promise<void> {

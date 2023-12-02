@@ -1,6 +1,6 @@
 import { useState, useCallback, useEffect } from "react";
 import { Task } from "../../logic/interfaces";
-import { LinearProgress, TextField, Box } from "@mui/material";
+import { LinearProgress, TextField, Box, Button } from "@mui/material";
 import { getTasks } from "../../logic/tasks"
 import TasksTable from "../../Components/Table/TasksTable";
 
@@ -11,10 +11,11 @@ const Tasks = () => {
     const [totalPages, setTotalPages] = useState<number>(1);
     const [totalItems, setTotalItems] = useState<number>(0);
     const [loading, setLoading] = useState(true);
+    const [isCompleted, setIsCompleted] = useState<boolean>(false);
 
     const fetchData = useCallback(
-        async (pageParam: number, searchParam?: string) => {
-            const res = await getTasks(pageParam, searchParam);
+        async (pageParam: number, searchParam?: string, isCompletedParam = false) => {
+            const res = await getTasks(pageParam, searchParam, isCompletedParam);
             setTotalPages(res.totalPages);
             setTotalItems(res.totalItems);
             setPage(pageParam);
@@ -46,16 +47,24 @@ const Tasks = () => {
         await fetchData(page, event.target.value);
     };
 
+    const handleIsCompletedChange = async () => {
+        setLoading(true);
+        setIsCompleted(!isCompleted);
+        await fetchData(1, search, !isCompleted);
+    };
+
     return (
         <>
             <Box sx={{ display: "flex", flexDirection: "row", mb: 2 }}>
                 <TextField
-                    fullWidth
+                    sx={{ width: "70%", mr: 2 }}
                     label="Wyszukaj"
                     variant="outlined"
                     value={search}
                     onChange={handleSearch}
                 />
+                <Button sx={{width: "30%"}} variant="contained" onClick={handleIsCompletedChange}>{isCompleted ? "Wyświetl tylko do zrobienia" : "Wyświetl tylko zrobione"}</Button>
+
             </Box>
             {loading ? (
                 <LinearProgress />

@@ -34,8 +34,9 @@ export class TaskController {
   async getAllTasks(
     @Query('page') page: number,
     @Query('search') search?: string,
+    @Query('isCompleted') isCompleted = false,
   ): Promise<object> {
-    return await this.taskService.getTasks(page, search);
+    return await this.taskService.getTasks(page, search, isCompleted);
   }
   @UseGuards(AuthGuard('jwt'), VolunteerGuard)
   @Get('user')

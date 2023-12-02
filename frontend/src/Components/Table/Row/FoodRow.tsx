@@ -48,7 +48,7 @@ const FoodRow = (props: {
                     sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
                 >
                     <TableCell>
-                        {setEditedFood.name}
+                        {editedFood.name}
                     </TableCell>
                     <TableCell>
                         {editedFood.quantity + editedFood.unit}
