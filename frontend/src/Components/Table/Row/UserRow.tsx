@@ -19,18 +19,18 @@ const UserRow = (props: {
 
     const handleDelete = async () => {
         if (props.user === null) return;
-        confirm({ description: "Are you sure you want to delete this user?" })
+        confirm({ description: "Czy na pewno chcesz usunąć tego użytkownika?" })
             .then(async () => {
                 const status = await deleteUser(props.user.id);
                 if (status === 204) {
-                    enqueueSnackbar("User deleted!", { variant: "success" });
+                    enqueueSnackbar("Użytkownik usunięty", { variant: "success" });
                     setHide(true);
                 } else {
-                    enqueueSnackbar("Something went wrong!", { variant: "error" });
+                    enqueueSnackbar("Coś poszło nie tak!", { variant: "error" });
                 }
             })
             .catch(() => {
-                enqueueSnackbar("User not deleted!", { variant: "info" });
+                enqueueSnackbar("Użytkownik nie został usunięty!", { variant: "info" });
             });
     };
     const editUser = (user: User) => {

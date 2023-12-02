@@ -7,7 +7,7 @@ import { useConfirm } from "material-ui-confirm";
 import { enqueueSnackbar } from "notistack";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 import { deleteTask, updateTask } from "../../../logic/tasks";
-import EditTaskModal from "../../ModalComponents/Edit/EditTaskModal";
+//import EditTaskModal from "../../ModalComponents/Edit/EditTaskModal";
 
 const TaskRow = (props: {
     task: Task;
@@ -19,18 +19,18 @@ const TaskRow = (props: {
 
     const handleDelete = async () => {
         if (props.task === null) return;
-        confirm({ description: "Are you sure you want to delete this task?" })
+        confirm({ description: "Czy na pewno chcesz usunąć to zadanie?" })
             .then(async () => {
                 const status = await deleteTask(props.task.id.toString());
                 if (status === 204) {
-                    enqueueSnackbar("Task deleted!", { variant: "success" });
+                    enqueueSnackbar("Zadanie usunięte!", { variant: "success" });
                     setHide(true);
                 } else {
-                    enqueueSnackbar("Something went wrong!", { variant: "error" });
+                    enqueueSnackbar("Coś poszło nie tak!", { variant: "error" });
                 }
             })
             .catch(() => {
-                enqueueSnackbar("Task not deleted!", { variant: "info" });
+                enqueueSnackbar("Zadanie nie zostało usunięte!", { variant: "info" });
             });
     };
     const editTask = (task: Task) => {
@@ -41,12 +41,11 @@ const TaskRow = (props: {
         setEditedTask(task);
         const response = await updateTask(task);
         if (response.status === 200) {
-            enqueueSnackbar("Status is successfully changed to done!", {
+            enqueueSnackbar("Zadanie zostało oznaczone jako wykonane!", {
                 variant: "success",
             });
-            props.handleStatusUpdate("DONE");
         } else {
-            enqueueSnackbar("Something went wrong!", { variant: "error" });
+            enqueueSnackbar("Coś poszło nie tak!", { variant: "error" });
         }
     };
 
