@@ -25,9 +25,9 @@ function Login() {
       if (status === 200) {
         navigate("/");
       } else if (status === 403) {
-        enqueueSnackbar("Wrong email or password", { variant: "error" });
+        enqueueSnackbar("Nieprawidłowy email lub hasło", { variant: "error" });
       } else {
-        enqueueSnackbar("Something went wrong", { variant: "error" });
+        enqueueSnackbar("Coś poszło nie tak", { variant: "error" });
       }
     }
   };
@@ -66,7 +66,7 @@ function Login() {
             <LockOutlinedIcon />
           </Avatar>
           <Typography component="h1" variant="h5">
-            Sign in
+            Zaloguj się
           </Typography>
           <Box
             component="form"
@@ -79,7 +79,7 @@ function Login() {
               required
               fullWidth
               id="email"
-              label="Email Address"
+              label="Adres email"
               name="email"
               autoComplete="email"
               autoFocus
@@ -89,7 +89,7 @@ function Login() {
               required
               fullWidth
               name="password"
-              label="Password"
+              label="Hasło"
               type="password"
               id="password"
               autoComplete="current-password"
@@ -97,7 +97,7 @@ function Login() {
 
             <FormControlLabel
               control={<Checkbox value="remember" color="primary" />}
-              label="Remember me"
+              label="Zapamiętaj mnie"
             />
             <Button
               type="submit"
@@ -105,15 +105,15 @@ function Login() {
               variant="contained"
               sx={{ mt: 3, mb: 2 }}
             >
-              Sign In
+              Zaloguj się
             </Button>
             <Grid container>
               <Grid item xs>
-                <Link to={"/auth/password/forgot"}>Forgot password?</Link>
+                <Link to={"/auth/password/forgot"} style={{color: '#fff', textDecoration: 'none'}}>Nie pamiętasz hasła?</Link>
               </Grid>
               <Grid item>
-                <Link to={"/auth/register"}>
-                  {"Don't have an account? Sign Up"}
+                <Link to={"/auth/register"} style={{color: '#fff', textDecoration: 'none'}}>
+                  {"Nie masz konta? Zarejestruj się"}
                 </Link>
               </Grid>
             </Grid>

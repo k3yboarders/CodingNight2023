@@ -24,13 +24,13 @@ const ForgotPassword = () => {
     } else {
       const status = await forgotPassword(emailRef.current.value);
       if (status === 201) {
-        enqueueSnackbar("Success, check your email", { variant: "success" });
+        enqueueSnackbar("Wysłano link do resetu hasła", { variant: "success" });
       } else if (status === 404) {
-        enqueueSnackbar("User with this email does not exist", {
+        enqueueSnackbar("Użytkownik o podanym mailu nie istnieje!", {
           variant: "error",
         });
       } else {
-        enqueueSnackbar("Error while sending email", { variant: "error" });
+        enqueueSnackbar("Wystąpił błąd podczas wysyłania maila", { variant: "error" });
       }
     }
   };
@@ -69,7 +69,7 @@ const ForgotPassword = () => {
             <LockOutlinedIcon />
           </Avatar>
           <Typography component="h1" variant="h5">
-            Forgot password?
+            Nie pamiętasz hasła?
           </Typography>
           <Box sx={{ mt: 1 }}>
             <TextField
@@ -77,7 +77,7 @@ const ForgotPassword = () => {
               fullWidth
               inputRef={emailRef}
               id="email"
-              label="Email Address"
+              label="Adres email"
               name="email"
               autoComplete="email"
               autoFocus
@@ -89,7 +89,7 @@ const ForgotPassword = () => {
               sx={{ mt: 3, mb: 2 }}
               onClick={handleSubmit}
             >
-              Send reset link
+              Wyślij link do resetu hasła
             </Button>
             <Grid item sx={{ mt: 20 }}>
               <Copyright />
