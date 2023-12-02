@@ -1,22 +1,21 @@
 import {AdminDashboard} from "./AdminDashboard/AdminDashboard.tsx";
 import {DriverDashboard} from "./DriverDashboard/DriverDashboard.tsx";
 import {VolunteerDashboard} from "./VolunteerDashboard/VolunteerDashboard.tsx";
-
-const userInfo = {
-    type: "volunteer",
-}
+import {getUserInfo} from "../../logic/auth.ts";
 export const Dashboard = () => {
+    const userInfo = getUserInfo();
+
     return (
         <>
-            {userInfo.type === "driver" && (
+            {userInfo.type === "DRIVER" && (
                 <DriverDashboard />
             )}
 
-            {userInfo.type === "volunteer" && (
+            {userInfo.type === "VOLUNTEER" && (
                 <VolunteerDashboard />
             )}
 
-            {userInfo.type === "admin" && (
+            {userInfo.type === "ADMIN" && (
                 <AdminDashboard />
             )}
         </>

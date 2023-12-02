@@ -3,7 +3,7 @@ import {Container, Link, Typography} from "@mui/material";
 export const AdminDashboard = () => {
 
     return (
-        <Container component={Link} href="https://google.com" maxWidth={false} sx={{
+        <Container component={Link} href="http://localhost:5174" maxWidth={false} sx={{
             display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh',
             backgroundImage:
                 "url(https://source.unsplash.com/random/?humanitarian,aid)",
