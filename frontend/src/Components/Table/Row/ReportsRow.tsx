@@ -19,18 +19,18 @@ const ReportsRow = (props: {
     const [editedReport] = useState<Report>(props.report);
 
     const handleDelete = async () => {
-        confirm({ description: "Are you sure you want to delete this report?" })
+        confirm({ description: "Czy na pewno chcesz usunąć raport?" })
             .then(async () => {
                 const status = await deleteReport(editedReport.id);
                 if (status === 204) {
-                    enqueueSnackbar("Report deleted!", { variant: "success" });
+                    enqueueSnackbar("Raport usunięty!", { variant: "success" });
                     setHide(true);
                 } else {
-                    enqueueSnackbar("Something went wrong!", { variant: "error" });
+                    enqueueSnackbar("Usuwanie raportu nie powiodło się", { variant: "error" });
                 }
             })
             .catch(() => {
-                enqueueSnackbar("Report not deleted!", { variant: "info" });
+                enqueueSnackbar("Raport nie został usunięty!", { variant: "info" });
             });
     };
 
