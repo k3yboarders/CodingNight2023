@@ -22,19 +22,18 @@ const Register = () => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
     if (data.get("email") && data.get("password") && data.get("username")) {
-      const message = await registerUser(
+      const didRegisterSuccessfully = await registerUser(
         data.get("email"),
         data.get("username"),
         data.get("password"),
+        data.get("firstName"),
+        data.get("lastName"),
       );
-      if (message) {
-        const msg = JSON.parse(message).msg;
-        if (msg === "Pomyślnie stworzono nowe konto!") {
-          enqueueSnackbar(msg, { variant: "success" });
-          navigate("/auth/login");
-        } else {
-          enqueueSnackbar("Coś poszło nie tak", { variant: "error" });
-        }
+      if (didRegisterSuccessfully) {
+        enqueueSnackbar('Pomyślnie stworzono nowe konto!', { variant: "success" });
+        navigate("/auth/login");
+      } else {
+        enqueueSnackbar("Coś poszło nie tak", { variant: "error" });
       }
     }
   };
@@ -122,6 +121,22 @@ const Register = () => {
                   id="password2"
                   autoComplete="current-password"
                 />
+            <TextField
+              margin="normal"
+              fullWidth
+              name="firstName"
+              label="Imię"
+              type="text"
+              id="firstName"
+            />
+            <TextField
+              margin="normal"
+              fullWidth
+              name="lastName"
+              label="Nazwisko"
+              type="text"
+              id="lastName"
+            />
               </Grid>
             </Grid>
             <Button
