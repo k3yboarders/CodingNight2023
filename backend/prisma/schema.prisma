@@ -40,6 +40,7 @@ model Task {
   isCompleted   Boolean         @default(false)
   longitude     Float
   latitude      Float
+  date          DateTime?
   VolunteerTask VolunteerTask[]
 }
 

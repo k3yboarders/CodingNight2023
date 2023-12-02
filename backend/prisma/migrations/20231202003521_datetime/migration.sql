@@ -1,0 +1,2 @@
+-- AlterTable
+ALTER TABLE `Task` ADD COLUMN `date` DATETIME(3) NULL;
