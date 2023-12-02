@@ -14,6 +14,7 @@ import Tasks from "./Pages/Tasks/Tasks";
 import Reports from "./Pages/Reports/Reports";
 import { LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs'
+import Food from "./Pages/Food/Food";
 
 const router = createBrowserRouter([
   {
@@ -56,6 +57,10 @@ const router = createBrowserRouter([
     path: "/auth/password/reset/:resetId",
     element: <ResetPassword />,
   },
+  {
+    path: "/food",
+    element: <Layout children={<Food />} containerless={true}/>
+  }
 ]);
 
 const darkTheme = createTheme({
