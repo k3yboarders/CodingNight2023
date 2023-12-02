@@ -78,7 +78,7 @@ const Layout = (props: { children: ReactElement }) => {
           }}
         >
           <Typography variant="h6" noWrap component="div">
-            ProductiveMaster
+            Haid
           </Typography>
           <IconButton onClick={toggleDrawer}>
             <ChevronLeftIcon />

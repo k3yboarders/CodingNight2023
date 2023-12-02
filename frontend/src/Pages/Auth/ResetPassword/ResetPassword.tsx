@@ -33,11 +33,11 @@ const ResetPassword = () => {
       newPasswordRef.current.value === "" ||
       confirmNewPasswordRef.current.value === ""
     ) {
-      enqueueSnackbar("Enter password two times!", { variant: "error" });
+      enqueueSnackbar("Wprowadź hasło dwa razy!", { variant: "error" });
     } else if (
       newPasswordRef.current.value !== confirmNewPasswordRef.current.value
     ) {
-      enqueueSnackbar("Passwords do not match!", { variant: "error" });
+      enqueueSnackbar("Hasła nie zgadzają się!", { variant: "error" });
     } else {
       if (resetId) {
         const status = await resetPassword(
@@ -45,10 +45,10 @@ const ResetPassword = () => {
           newPasswordRef.current.value,
         );
         if (status === 201) {
-          enqueueSnackbar("Password has been changed", { variant: "success" });
+          enqueueSnackbar("Hasło zostało zmienione", { variant: "success" });
           navigate("/auth/login");
         } else {
-          enqueueSnackbar("Server error", { variant: "error" });
+          enqueueSnackbar("Błąd serwera", { variant: "error" });
         }
       } else {
         navigate("/auth/login");
@@ -93,16 +93,14 @@ const ResetPassword = () => {
           <Avatar sx={{ m: 1, bgcolor: "secondary.main" }}>
             <LockOutlinedIcon />
           </Avatar>
-          <Typography component="h1" variant="h5">
-            Change your password
-          </Typography>
+          <Typography component="h1" variant="h5">Zmień hasło</Typography>
           <Box sx={{ mt: 1 }}>
             <TextField
               margin="normal"
               fullWidth
               inputRef={newPasswordRef}
               id="newPassword"
-              label="New password"
+              label="Nowe hasło"
               type="password"
               autoFocus
             />
@@ -111,7 +109,7 @@ const ResetPassword = () => {
               fullWidth
               inputRef={confirmNewPasswordRef}
               id="newPassword"
-              label="Confirm new password"
+              label="Potwierdź nowe hasło"
               type="password"
               autoFocus
             />
@@ -122,7 +120,7 @@ const ResetPassword = () => {
               sx={{ mt: 3, mb: 2 }}
               onClick={handleSubmit}
             >
-              Change password
+            Zmień hasło
             </Button>
             <Grid item sx={{ mt: 20 }}>
               <Copyright />

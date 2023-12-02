@@ -37,6 +37,7 @@ model Task {
   id            Int             @id @default(autoincrement())
   name          String
   urgency       Int
+  isCompleted   Boolean         @default(false)
   longitude     Float
   latitude      Float
   VolunteerTask VolunteerTask[]
@@ -66,6 +67,31 @@ model Ambulance {
   driver      User    @relation(fields: [driverId], references: [id])
 }
 
+model DangerousPlace {
+  id        Int        @id @default(autoincrement())
+  longitude Float
+  latitude  Float
+  type      DangerType
+  severity  Int
+}
+
+model DangerousArea {
+  id        Int        @id @default(autoincrement())
+  longitude Float
+  latitude  Float
+  type      DangerType
+  severity  Int
+  radius    Float
+}
+
+model Report {
+  id        Int        @id @default(autoincrement())
+  text      String
+  longitude Float
+  latitude  Float
+  type      DangerType
+}
+
 enum DangerType {
   BOMBING
   TERRORIST_ATTACK
@@ -74,12 +100,4 @@ enum DangerType {
   TORNADO
   FAMINE
   ROAD_ACCIDENT
-}
-
-model DangerousPlace {
-  id        Int        @id @default(autoincrement())
-  longitude Float
-  latitude  Float
-  type      DangerType
-  severity  Int
 }

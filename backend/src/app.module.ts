@@ -6,6 +6,10 @@ import { FoodModule } from './food/food.module';
 import { UsersModule } from './users/users.module';
 import { ShelterModule } from './shelter/shelter.module';
 import { TaskModule } from './task/task.module';
+import { ReportModule } from './report/report.module';
+import { AmbulanceModule } from './ambulance/ambulance.module';
+import { DangerousPlaceModule } from './dangerous-place/dangerous-place.module';
+import { DangerousAreaModule } from './dangerous-area/dangerous-area.module';
 
 @Module({
   imports: [
@@ -30,6 +34,10 @@ import { TaskModule } from './task/task.module';
     UsersModule,
     ShelterModule,
     TaskModule,
+    ReportModule,
+    AmbulanceModule,
+    DangerousPlaceModule,
+    DangerousAreaModule,
   ],
 })
 export class AppModule {}

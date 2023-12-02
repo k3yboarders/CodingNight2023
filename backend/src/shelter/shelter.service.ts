@@ -8,7 +8,7 @@ export class ShelterService {
 
   async getShelters(page: number) {
     const data = await this.prisma.shelter.findMany({
-      skip: page * 10,
+      skip: (page - 1) * 10,
       take: 10,
       select: {
         id: true,

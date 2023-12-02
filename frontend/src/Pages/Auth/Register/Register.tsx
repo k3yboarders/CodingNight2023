@@ -28,11 +28,11 @@ const Register = () => {
       );
       if (message) {
         const msg = JSON.parse(message).msg;
-        if (msg === "Successfully registered a new account!") {
+        if (msg === "Pomyślnie stworzono nowe konto!") {
           enqueueSnackbar(msg, { variant: "success" });
           navigate("/auth/login");
         } else {
-          enqueueSnackbar("Something went wrong", { variant: "error" });
+          enqueueSnackbar("Coś poszło nie tak", { variant: "error" });
         }
       }
     }
@@ -87,7 +87,7 @@ const Register = () => {
                   required
                   fullWidth
                   id="username"
-                  label="Username"
+                  label="Nazwa użytkownika"
                   name="username"
                   autoComplete="username"
                   autoFocus
@@ -96,7 +96,7 @@ const Register = () => {
                   required
                   fullWidth
                   id="email"
-                  label="Email Address"
+                  label="Adres email"
                   name="email"
                   autoComplete="email"
                 />
@@ -106,7 +106,7 @@ const Register = () => {
                   required
                   fullWidth
                   name="password"
-                  label="Password"
+                  label="Hasło"
                   type="password"
                   id="password"
                   autoComplete="new-password"
@@ -116,7 +116,7 @@ const Register = () => {
                   required
                   fullWidth
                   name="password2"
-                  label="Repeat password"
+                  label="Powtórz hasło"
                   type="password"
                   id="password2"
                   autoComplete="current-password"
@@ -133,7 +133,7 @@ const Register = () => {
             </Button>
             <Grid container justifyContent="flex-end">
               <Grid item>
-                <Link to={"/auth/login"}>Already have an account? Sign in</Link>
+                <Link to={"/auth/login"}>Masz już konto? Zaloguj się</Link>
               </Grid>
             </Grid>
           </Box>

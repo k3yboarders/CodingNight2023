@@ -6,9 +6,26 @@ import { UserDto } from './dto/user.dto';
 export class UsersService {
   constructor(private readonly prisma: DbService) {}
 
-  async getUsers(page: number) {
+  async getUsers(page = 1, search?: string) {
+    const whereParams = {};
+    if (search) {
+      Object.assign(whereParams, {
+        OR: [
+          {
+            email: {
+              contains: search,
+            },
+          },
+          {
+            username: {
+              contains: search,
+            },
+          },
+        ],
+      });
+    }
     const data = await this.prisma.user.findMany({
-      skip: page * 10,
+      skip: page === 1 ? 0 : (page - 1) * 10,
       take: 10,
       select: {
         id: true,
@@ -18,8 +35,11 @@ export class UsersService {
         createdAt: true,
         updatedAt: true,
       },
+      where: whereParams,
     });
-    const totalItems = await this.prisma.user.count();
+    const totalItems = await this.prisma.user.count({
+      where: whereParams,
+    });
     return { data, totalItems, totalPages: Math.ceil(totalItems / 10) };
   }
   async getUser(id: number) {

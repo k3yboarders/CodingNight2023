@@ -1,66 +1,62 @@
 import { Injectable } from '@nestjs/common';
 import { FoodDto } from './dto/food.dto';
-import { DbService } from 'src/db/db.service';
+import { DbService } from '../db/db.service';
 
 @Injectable()
 export class FoodService {
+  constructor(private readonly prisma: DbService) {}
+  async createFood(dto: FoodDto): Promise<void> {
+    await this.prisma.food.create({
+      data: {
+        name: dto.name,
+        quantity: dto.quantity,
+        unit: dto.unit,
+      },
+    });
+  }
 
-    constructor (private readonly prisma: DbService) {}
-    async createFood(dto: FoodDto): Promise<void> {
-        await this.prisma.food.create({
-            data: {
-                name: dto.name,
-                quantity: dto.quantity,
-                unit: dto.unit,
-            },
-        });
+  async getAllFoods(page = 1, search?: string): Promise<object> {
+    let whereParams = {};
+    if (search) {
+      whereParams = {
+        name: {
+          contains: search,
+        },
+      };
     }
 
-    async addFood(foodId: number, quantityToAdd: number) {
-        const currentQuantity = (await this.prisma.food.findUniqueOrThrow({
-            where: {
-                id: foodId
-            },
-            select: {
-                quantity: true
-            }
-        })).quantity;
-        
-        await this.prisma.food.update({
-            where: {
-                id: foodId,
-            },
-            data: {
-                quantity: currentQuantity + quantityToAdd,
-            },
-        });
-    }
+    const data = await this.prisma.food.findMany({
+      skip: (page - 1) * 10,
+      take: 10,
+      where: whereParams,
+    });
+    const totalItems = await this.prisma.food.count();
 
-    async deleteFood(foodId: number) {
-        await this.prisma.food.delete({
-            where: {
-                id: foodId,
-            },
-        });
-    }
+    return {
+      data,
+      totalItems,
+      totalPages: Math.ceil(totalItems / 10),
+    };
+  }
 
-    async removeFoodSupply(foodId: number, quantityToRemove: number) {
-        const currentQuantity = (await this.prisma.food.findUniqueOrThrow({
-            where: {
-                id: foodId
-            },
-            select: {
-                quantity: true
-            }
-        })).quantity;
-        
-        await this.prisma.food.update({
-            where: {
-                id: foodId,
-            },
-            data: {
-                quantity: currentQuantity - quantityToRemove,
-            },
-        });
-    }
+  async updateFood(foodId: number, dto: FoodDto): Promise<void> {
+    await this.prisma.food.update({
+      where: {
+        id: foodId,
+      },
+      data: {
+        name: dto.name,
+        quantity: dto.quantity,
+        unit: dto.unit,
+      },
+    });
+  }
+
+  async deleteFood(foodId: number) {
+    await this.prisma.food.delete({
+      where: {
+        id: foodId,
+      },
+    });
+  }
 }

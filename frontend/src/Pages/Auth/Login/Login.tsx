@@ -25,9 +25,9 @@ function Login() {
       if (status === 200) {
         navigate("/");
       } else if (status === 403) {
-        enqueueSnackbar("Wrong email or password", { variant: "error" });
+        enqueueSnackbar("Zły email lub hasło", { variant: "error" });
       } else {
-        enqueueSnackbar("Something went wrong", { variant: "error" });
+        enqueueSnackbar("Coś poszło nie tak", { variant: "error" });
       }
     }
   };
@@ -79,7 +79,7 @@ function Login() {
               required
               fullWidth
               id="email"
-              label="Email Address"
+              label="Adres email"
               name="email"
               autoComplete="email"
               autoFocus
@@ -89,7 +89,7 @@ function Login() {
               required
               fullWidth
               name="password"
-              label="Password"
+              label="Hasło"
               type="password"
               id="password"
               autoComplete="current-password"
@@ -97,7 +97,7 @@ function Login() {
 
             <FormControlLabel
               control={<Checkbox value="remember" color="primary" />}
-              label="Remember me"
+              label="Zapamiętaj mnie"
             />
             <Button
               type="submit"
@@ -113,7 +113,7 @@ function Login() {
               </Grid>
               <Grid item>
                 <Link to={"/auth/register"}>
-                  {"Don't have an account? Sign Up"}
+                  {"Nie masz konta? Zarejestruj się"}
                 </Link>
               </Grid>
             </Grid>
