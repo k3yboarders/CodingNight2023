@@ -38,6 +38,11 @@ export class TaskController {
   ): Promise<object> {
     return await this.taskService.getTasks(page, search, isCompleted);
   }
+
+  @Get('all')
+  async getAllTasksWithoutPaginating(): Promise<object> {
+    return await this.taskService.getAllTasksWithoutPaginating();
+  }
   @UseGuards(AuthGuard('jwt'), VolunteerGuard)
   @Get('user')
   async getUsersTasks(

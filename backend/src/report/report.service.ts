@@ -51,6 +51,40 @@ export class ReportService {
     };
   }
 
+  async getReportsWithoutPaginating() {
+    return await this.prisma.report.findMany({
+      orderBy: {
+        createdAt: 'desc',
+      },
+      select: {
+        id: true,
+        text: true,
+        longitude: true,
+        latitude: true,
+        type: true,
+        isCompleted: true,
+        ambulance: {
+          select: {
+            id: true,
+            longitude: true,
+            latitude: true,
+            driver: {
+              select: {
+                id: true,
+                username: true,
+                firstName: true,
+                lastName: true,
+                email: true,
+              },
+            },
+          },
+        },
+        createdAt: true,
+        updatedAt: true,
+      },
+    });
+  }
+
   async getUserReports(userId: number, isCompleted = false) {
     return await this.prisma.report.findMany({
       where: {

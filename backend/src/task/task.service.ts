@@ -41,19 +41,38 @@ export class TaskService {
         },
       };
     }
-
-    const data = await this.prisma.task.findMany({
+    const tasks = await this.prisma.task.findMany({
       skip: (page - 1) * 10,
       take: 10,
       where: whereParams,
+      select: {
+        id: true,
+        name: true,
+        urgency: true,
+        longitude: true,
+        latitude: true,
+        isCompleted: true,
+        date: true,
+      },
     });
-    const totalItems = await this.prisma.task.count();
-
     return {
-      data,
-      totalItems,
-      totalPages: Math.ceil(totalItems / 10),
+      data: tasks,
+      totalItems: await this.prisma.task.count({ where: whereParams }),
+      totalPages: Math.ceil((await this.prisma.task.count()) / 10),
     };
+  }
+  async getAllTasksWithoutPaginating(): Promise<object> {
+    return await this.prisma.task.findMany({
+      select: {
+        id: true,
+        name: true,
+        urgency: true,
+        longitude: true,
+        latitude: true,
+        isCompleted: true,
+        date: true,
+      },
+    });
   }
 
   async updateTask(taskId: number, task: TaskDto): Promise<void> {

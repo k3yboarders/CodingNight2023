@@ -25,12 +25,9 @@ export class ReportController {
 
   @UseGuards(AuthGuard('jwt'), AdminGuard)
   @Get('last')
-  async getByLastDays(
-    @Query('days') days,
-  ) {
+  async getByLastDays(@Query('days') days) {
     return await this.reportService.getReportsByLastDays(days);
   }
-
 
   @UseGuards(AuthGuard('jwt'), AdminGuard)
   @Get()
@@ -39,6 +36,11 @@ export class ReportController {
     @Query('isCompleted') isCompleted: boolean,
   ) {
     return await this.reportService.getAllReports(page, isCompleted);
+  }
+
+  @UseGuards(AuthGuard('jwt'), AdminGuard)
+  async getReportsWithoutPaginating() {
+    return await this.reportService.getReportsWithoutPaginating();
   }
   @HttpCode(HttpStatus.CREATED)
   @Post()
