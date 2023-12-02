@@ -23,7 +23,7 @@ function Login() {
     if (data.get("email") && data.get("password")) {
       const status = await login(data.get("email"), data.get("password"));
       if (status === 200) {
-        navigate("/");
+        navigate("/dashboard");
       } else if (status === 403) {
         enqueueSnackbar("Nieprawidłowy email lub hasło", { variant: "error" });
       } else {

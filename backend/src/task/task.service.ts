@@ -64,10 +64,13 @@ export class TaskService {
     });
   }
 
-  async getUsersTask(userId: number): Promise<object> {
-    return await this.prisma.volunteerTask.findMany({
+  async getUsersTask(userId: number, isCompleted = false): Promise<object> {
+    const tasks = await this.prisma.volunteerTask.findMany({
       where: {
         userId: userId,
+        task: {
+          isCompleted: isCompleted,
+        },
       },
       select: {
         task: {
@@ -77,10 +80,12 @@ export class TaskService {
             urgency: true,
             longitude: true,
             latitude: true,
+            isCompleted: true,
           },
         },
       },
     });
+    return tasks.map((task) => task.task);
   }
 
   async assignTaskToVolunteer(
@@ -100,6 +105,14 @@ export class TaskService {
       where: {
         taskId: taskId,
         userId: userId,
+      },
+      select: {
+        userId: true,
+        task: {
+          select: {
+            isCompleted: true,
+          },
+        },
       },
     });
     if (!task) {
@@ -122,7 +135,7 @@ export class TaskService {
         id: taskId,
       },
       data: {
-        isCompleted: true,
+        isCompleted: task.task.isCompleted ? false : true,
       },
     });
   }

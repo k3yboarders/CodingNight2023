@@ -38,9 +38,12 @@ export class TaskController {
     return await this.taskService.getTasks(page, search);
   }
   @UseGuards(AuthGuard('jwt'), VolunteerGuard)
-  @Get(':id')
-  async getUsersTasks(@Param('id') userId: number): Promise<object> {
-    return await this.taskService.getUsersTask(userId);
+  @Get('user')
+  async getUsersTasks(
+    @GetUser() user: JwtAuthDto,
+    @Query('isCompleted') isCompleted: boolean,
+  ): Promise<object> {
+    return await this.taskService.getUsersTask(user.userId, isCompleted);
   }
 
   @UseGuards(AuthGuard('jwt'), AdminGuard)
