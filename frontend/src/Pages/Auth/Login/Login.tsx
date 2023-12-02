@@ -5,7 +5,7 @@ import CssBaseline from "@mui/material/CssBaseline";
 import TextField from "@mui/material/TextField";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import Checkbox from "@mui/material/Checkbox";
-import { Link, useNavigate } from "react-router-dom";
+import { Link as RouterLink, useNavigate } from "react-router-dom";
 import Paper from "@mui/material/Paper";
 import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
@@ -14,6 +14,7 @@ import Typography from "@mui/material/Typography";
 import Copyright from "./../../../Layout/Copyright";
 import { login } from "../../../logic/auth";
 import { enqueueSnackbar } from "notistack";
+import { Link } from "@mui/material";
 
 function Login() {
   const navigate = useNavigate();
@@ -66,7 +67,7 @@ function Login() {
             <LockOutlinedIcon />
           </Avatar>
           <Typography component="h1" variant="h5">
-            Sign in
+            Zaloguj się
           </Typography>
           <Box
             component="form"
@@ -105,14 +106,14 @@ function Login() {
               variant="contained"
               sx={{ mt: 3, mb: 2 }}
             >
-              Sign In
+              Zaloguj się
             </Button>
             <Grid container>
               <Grid item xs>
-                <Link to={"/auth/password/forgot"}>Forgot password?</Link>
+                <Link to={"/auth/password/forgot"} component={RouterLink}>Zapomniałeś/aś hasła?</Link>
               </Grid>
               <Grid item>
-                <Link to={"/auth/register"}>
+                <Link to={"/auth/register"} component={RouterLink}>
                   {"Nie masz konta? Zarejestruj się"}
                 </Link>
               </Grid>

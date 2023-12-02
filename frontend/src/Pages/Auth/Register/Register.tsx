@@ -9,11 +9,12 @@ import {
   TextField,
   Typography,
 } from "@mui/material";
-import { Link, useNavigate } from "react-router-dom";
+import { Link as RouterLink, useNavigate } from "react-router-dom";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Copyright from "../../../Layout/Copyright";
 import { registerUser } from "../../../logic/auth";
 import { enqueueSnackbar } from "notistack";
+import { Link } from "@mui/material";
 
 const Register = () => {
   const navigate = useNavigate();
@@ -72,7 +73,7 @@ const Register = () => {
             <LockOutlinedIcon />
           </Avatar>
           <Typography component="h1" variant="h5">
-            Sign up
+          Zarejestruj się
           </Typography>
           <Box
             component="form"
@@ -129,11 +130,11 @@ const Register = () => {
               variant="contained"
               sx={{ mt: 3, mb: 2 }}
             >
-              Sign Up
+            Zarejestruj się
             </Button>
             <Grid container justifyContent="flex-end">
               <Grid item>
-                <Link to={"/auth/login"}>Masz już konto? Zaloguj się</Link>
+                <Link to={"/auth/login"} component={RouterLink}>Masz już konto? Zaloguj się</Link>
               </Grid>
             </Grid>
           </Box>
