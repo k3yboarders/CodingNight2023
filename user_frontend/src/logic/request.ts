@@ -1,6 +1,6 @@
 const BACKEND_ORIGIN = import.meta.env.PROD
   ? "/api"
-  : "http://localhost:5001";
+  : "https://api.cn.maksymiliangala.com";
 
 export const backendRequest = (
   path: string,
