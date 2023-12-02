@@ -60,12 +60,13 @@ model Shelter {
 }
 
 model Ambulance {
-  id          Int     @id @default(autoincrement())
+  id          Int      @id @default(autoincrement())
   longitude   Float?
   latitude    Float?
-  isAvailable Boolean
   driverId    Int
-  driver      User    @relation(fields: [driverId], references: [id])
+  driver      User     @relation(fields: [driverId], references: [id])
+  isAvailable Boolean  @default(true)
+  Report      Report[]
 }
 
 model DangerousPlace {
@@ -86,11 +87,16 @@ model DangerousArea {
 }
 
 model Report {
-  id        Int        @id @default(autoincrement())
-  text      String
-  longitude Float
-  latitude  Float
-  type      DangerType
+  id          Int        @id @default(autoincrement())
+  text        String
+  longitude   Float
+  latitude    Float
+  type        DangerType
+  ambulanceId Int?
+  ambulance   Ambulance? @relation(fields: [ambulanceId], references: [id])
+  isCompleted Boolean    @default(false)
+  createdAt   DateTime   @default(now())
+  updatedAt   DateTime   @updatedAt
 }
 
 enum DangerType {

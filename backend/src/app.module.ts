@@ -10,6 +10,7 @@ import { ReportModule } from './report/report.module';
 import { AmbulanceModule } from './ambulance/ambulance.module';
 import { DangerousPlaceModule } from './dangerous-place/dangerous-place.module';
 import { DangerousAreaModule } from './dangerous-area/dangerous-area.module';
+import { MissionModule } from './mission/mission.module';
 
 @Module({
   imports: [
@@ -38,6 +39,7 @@ import { DangerousAreaModule } from './dangerous-area/dangerous-area.module';
     AmbulanceModule,
     DangerousPlaceModule,
     DangerousAreaModule,
+    MissionModule,
   ],
 })
 export class AppModule {}

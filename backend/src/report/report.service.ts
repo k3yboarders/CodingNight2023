@@ -10,6 +10,9 @@ export class ReportService {
     return await this.prisma.report.findMany({
       skip: (page - 1) * 10,
       take: 10,
+      orderBy: {
+        createdAt: 'desc',
+      },
     });
   }
 
@@ -45,6 +48,21 @@ export class ReportService {
   async deleteReport(id: number) {
     return await this.prisma.report.delete({
       where: { id },
+    });
+  }
+
+  async assignAmbulance(id: number, ambulanceId: number) {
+    await this.prisma.ambulance.update({
+      where: { id: ambulanceId },
+      data: {
+        isAvailable: false,
+      },
+    });
+    return await this.prisma.report.update({
+      where: { id },
+      data: {
+        ambulanceId,
+      },
     });
   }
 }

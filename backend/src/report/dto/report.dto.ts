@@ -1,4 +1,12 @@
-import { IsEnum, IsNotEmpty, IsNumber, IsString } from 'class-validator';
+import {
+  IsEnum,
+  IsInt,
+  IsNotEmpty,
+  IsNumber,
+  IsOptional,
+  IsPositive,
+  IsString,
+} from 'class-validator';
 
 enum DangerType {
   BOMBING = 'BOMBING',
@@ -22,4 +30,9 @@ export class ReportDto {
 
   @IsEnum(DangerType)
   readonly type: DangerType;
+
+  @IsOptional()
+  @IsInt()
+  @IsPositive()
+  readonly ambulanceId: number;
 }
