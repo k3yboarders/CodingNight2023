@@ -16,6 +16,19 @@ export class AmbulanceService {
     const data = await this.prisma.ambulance.findMany({
       skip: (page - 1) * 10,
       take: 10,
+      select: {
+        id: true,
+        longitude: true,
+        latitude: true,
+        isAvailable: true,
+        driver: {
+          select: {
+            id: true,
+            firstName: true,
+            lastName: true,
+          }
+        }
+      }
     });
 
     return {

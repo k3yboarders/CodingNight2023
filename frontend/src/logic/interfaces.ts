@@ -42,6 +42,7 @@ export interface Ambulance {
   id: number;
   longitude: number;
   latitude: number;
+  isAvailable: boolean;
   driver?: User;
 }
 

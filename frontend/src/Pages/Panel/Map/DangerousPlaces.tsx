@@ -15,7 +15,7 @@ const DangerousPlaces = () => {
     const [places, setPlaces] = React.useState([] as DangerousPlace[]);
 
     React.useEffect(() => {
-        backendRequest('dangerous-place?page=1', 'GET', true)
+        backendRequest('dangerous-place', 'GET', true)
         .then(res => {
             if(res.ok) 
                 return res.json()

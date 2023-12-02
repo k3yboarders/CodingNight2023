@@ -12,7 +12,7 @@ const DangerousAreas = () => {
     const [areas, setAreas] = React.useState([] as DangerousArea[]);
 
     React.useEffect(() => {
-        backendRequest('dangerous-area?page=1', 'GET', true)
+        backendRequest('dangerous-area', 'GET', true)
         .then(res => {
             if(res.ok) 
                 return res.json()
