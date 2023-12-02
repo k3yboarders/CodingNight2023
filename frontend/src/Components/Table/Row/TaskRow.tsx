@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { TableRow, TableCell, IconButton } from "@mui/material";
 import { Task } from "../../../logic/interfaces";
-import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { useConfirm } from "material-ui-confirm";
 import { enqueueSnackbar } from "notistack";
@@ -68,22 +67,11 @@ const TaskRow = (props: {
                         <IconButton onClick={handleComplete}>
                             <CheckCircleIcon />
                         </IconButton>
-                        <IconButton onClick={() => setEdit(true)}>
-                            <EditIcon />
-                        </IconButton>
                         <IconButton onClick={handleDelete}>
                             <DeleteIcon />
                         </IconButton>
                     </TableCell>
                 </TableRow>
-            )}
-            {edit && (
-                <EditTaskModal
-                    open={edit}
-                    handleClose={handleCloseEditModal}
-                    task={editedTask}
-                    updateTask={editTask}
-                />
             )}
         </>
     );
